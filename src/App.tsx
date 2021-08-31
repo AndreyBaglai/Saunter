@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 
-import { PageHeader, Button, Row, Col, Input, List, Avatar } from 'antd';
+import { PageHeader, Button, Row, Col, Input, List, Avatar, Card } from 'antd';
 
 const { Search } = Input;
 
@@ -27,20 +27,31 @@ function App() {
             <Search placeholder="Input search text" onSearch={() => {}} enterButton />
             <List
               dataSource={paths}
-              renderItem={(PaymentMethodChangeEvent: any) => (
-                <List.Item key={PaymentMethodChangeEvent.body + PaymentMethodChangeEvent.path}>
+              bordered={true}
+              renderItem={(path: any) => (
+                <List.Item key={path.body + path.path}>
                   <List.Item.Meta
                     avatar={
                       <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                     }
-                    title={<a href="https://ant.design">{PaymentMethodChangeEvent.body}</a>}
-                    description={PaymentMethodChangeEvent.body}
+                    title={<a href="https://ant.design">{path.body}</a>}
+                    description={path.body}
                   />
-                  <div>Content</div>
+                  <div>1.45 km</div>
                 </List.Item>
               )}></List>
           </Col>
-          <Col span={12}>col-12 Right side</Col>
+
+          <Col>
+            <Card title="Path title" extra={<h5>1.13 km</h5>} style={{ width: '100%' }}>
+              <p>Full description</p>
+              <p>Map</p>
+              <Button type="link">Add to favorite</Button>
+              <Button type="link" danger>
+                Remove path
+              </Button>
+            </Card>
+          </Col>
         </Row>
       </main>
     </>
