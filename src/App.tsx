@@ -4,6 +4,7 @@ import { PageHeader, Button, Row, Col, Input, List, Avatar, Card, Form } from 'a
 import { CloseOutlined } from '@ant-design/icons';
 
 import 'antd/dist/antd.css';
+import styles from './App.module.css';
 
 const { Search, TextArea } = Input;
 
@@ -27,7 +28,7 @@ function App() {
   const onCreatePath = (data: any) => console.log(data);
 
   return (
-    <>
+    <div className={styles.app}>
       <PageHeader
         title="Saunter"
         extra={[
@@ -105,7 +106,7 @@ function App() {
           <Col span={12}>Map form</Col>
         </Row>
       </div>
-    </>
+    </div>
   );
 }
 
