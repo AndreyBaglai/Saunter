@@ -12,7 +12,7 @@ export default function Header() {
         className={styles.header}
         title={<Logo />}
         extra={[
-          <CustomButton key="1" size="large" text="Add path"></CustomButton>
+          <CustomButton key="1" size="large" text="Add path" htmlType="button"></CustomButton>
         ]}
       />
     </>

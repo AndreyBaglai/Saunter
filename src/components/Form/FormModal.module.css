@@ -1,0 +1,27 @@
+.modal {
+  background: rgb(87, 87, 87);
+  padding: 24px;
+}
+
+.modalTitle {
+  background: rgb(87, 87, 87);
+}
+
+.modalTitle span {
+  color: #fff;
+}
+
+.form {
+  text-align: center;
+}
+
+.formField label {
+  color: #fff;
+}
+
+.distance {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
