@@ -1,8 +1,8 @@
 import React from 'react';
 import { List, Typography } from 'antd';
+import { EnvironmentTwoTone, RightOutlined } from '@ant-design/icons';
 
 import styles from './ListPaths.module.css';
-import { EnvironmentTwoTone, RightOutlined } from '@ant-design/icons';
 
 export default function ListPaths() {
   const paths = [

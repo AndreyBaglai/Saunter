@@ -1,9 +1,9 @@
 import React from 'react';
 import { Col, Button, Card } from 'antd';
 
-import styles from './MainRightSide.module.css';
+import styles from './PathView.module.css';
 
-export default function MainRightSide() {
+export default function PathView() {
   return (
     <Col span={11} offset={1} className={styles.pathView}>
       <Card

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Col, PageHeader, Row, Typography, Form, Input, Button } from 'antd';
+import { Col, PageHeader, Row, Typography, Form, Input } from 'antd';
 
-import styles from './FormModal.module.css';
 import { CloseOutlined } from '@ant-design/icons';
 import CustomButton from '../Button/CustomButton';
+
+import styles from './FormModal.module.css';
 
 export default function FormModal() {
   const validateMessages = {
