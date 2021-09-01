@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, PageHeader } from 'antd';
+import { PageHeader } from 'antd';
 
 import styles from './Header.module.css';
 import Logo from '../Logo/Logo';
+import CustomButton from '../Button/CustomButton';
 
 export default function Header() {
   return (
@@ -11,9 +12,7 @@ export default function Header() {
         className={styles.header}
         title={<Logo />}
         extra={[
-          <Button key="1" type="primary">
-            Add path
-          </Button>,
+          <CustomButton key="1" size="large" text="Add path"></CustomButton>
         ]}
       />
     </>

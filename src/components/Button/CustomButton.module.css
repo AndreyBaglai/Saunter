@@ -1,0 +1,10 @@
+.customBtn {
+  background-color: #9aed00;
+  color: #000;
+  font-weight: 400;
+}
+
+.customBtn:hover, .customBtn:focus {
+  color:#9aed00;
+  border-color:#9aed00;
+}
