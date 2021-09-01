@@ -1,25 +1,16 @@
 import React from 'react';
-import { Col, Row, Input, List, Avatar } from 'antd';
+import { Col, Row, Card, Button } from 'antd';
 
 import styles from './Main.module.css';
 import MainLeftSide from '../MainLeftSide/MainLeftSide';
+import MainRightSide from '../MainRightSide/MainRightSide';
 
 export default function Main() {
   return (
     <main className={styles.main}>
-      <Row>
+      <Row justify="space-around">
         <MainLeftSide />
-
-        <Col>
-          {/* <Card title="Path title" extra={<h5>1.13 km</h5>} style={{ width: '100%' }}>
-            <p>Full description</p>
-            <p>Map</p>
-            <Button type="link">Add to favorite</Button>
-            <Button type="link" danger>
-              Remove path
-            </Button>
-          </Card> */}
-        </Col>
+        <MainRightSide />
       </Row>
     </main>
   );

@@ -1,0 +1,55 @@
+.list {
+  border-radius: 10px;
+  max-height: 400px;
+  overflow-y: scroll;
+  border: 1px solid #9aed00;
+}
+
+.listItem {
+  padding: 18px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.listItem:hover {
+  background: #9aed00;
+}
+
+.listItem:hover h4,
+.listItem:hover .leftArrow {
+  color: #000;
+}
+
+.listItem h4 {
+  color: #9aed00;
+}
+
+.leftArrow {
+  font-size: 28px;
+  color: #9aed00;
+}
+
+.meta {
+  align-items: center;
+}
+
+.title {
+  color: #fff;
+}
+
+.description {
+  color: #fff;
+}
+
+.distance {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.itemMarker {
+  font-size: 32px;
+  color: rgb(253, 50, 5);
+}
