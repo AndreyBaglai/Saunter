@@ -1,0 +1,21 @@
+.pathView {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #9aed00;
+}
+
+.card {
+  background: transparent;
+  color: #fff;
+  border: none;
+}
+
+.distance {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wrapperBtn {
+  margin: 0 auto;
+}
