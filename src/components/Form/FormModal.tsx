@@ -17,7 +17,7 @@ export default function FormModal() {
   const isOpen = useSelector((state: StoreModel) => state.form.isOpen);
   const dispatch = useDispatch();
 
-  const onCloseForm = () => dispatch({ type: 'form/formClose', payload: false });
+  const onCloseForm = () => dispatch({ type: 'form/close', payload: false });
   const onCreatePath = (formData: any) => {
     const newPath: PathModel = {
       id: nanoid(),
@@ -31,8 +31,8 @@ export default function FormModal() {
       map: '',
     };
 
-    dispatch({ type: 'paths/pathAdd', payload: newPath });
-    dispatch({ type: 'form/formClose', payload: false });
+    dispatch({ type: 'paths/add', payload: newPath });
+    dispatch({ type: 'form/close', payload: false });
   };
 
   return isOpen

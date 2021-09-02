@@ -1,9 +1,9 @@
-import { PathModel } from "./path-model";
+import { PathModel } from './path-model';
 
 export type StoreModel = {
   paths: PathModel[];
-  selectPath: PathModel | null;
+  currentPath: PathModel | null;
   form: {
     isOpen: boolean;
   };
-}
+};

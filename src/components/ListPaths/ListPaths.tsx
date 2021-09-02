@@ -16,9 +16,9 @@ export default function ListPaths() {
     const target = e.currentTarget as HTMLElement;
     const path = paths.find((path) => path.id === target.id);
 
-    dispatch({ type: 'paths/pathSetSelect', payload: target.id });
+    dispatch({ type: 'paths/select', payload: target.id });
     dispatch({
-      type: 'selectPath/selectPathSet',
+      type: 'currentPath/set',
       payload: path,
     });
   };

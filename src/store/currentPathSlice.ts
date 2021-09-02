@@ -4,17 +4,17 @@ const initialState = {
   path: null,
 };
 
-const selectPathSlice = createSlice({
-  name: 'selectPath',
+const currentPathSlice = createSlice({
+  name: 'currentPath',
   initialState,
   reducers: {
-    selectPathSet(state, action) {
+    set(state, action) {
       state.path = action.payload;
     },
-    selectPathRemove(state, action) {
+    remove(state, action) {
       state.path = action.payload;
     },
   },
 });
 
-export default selectPathSlice.reducer;
+export default currentPathSlice.reducer;

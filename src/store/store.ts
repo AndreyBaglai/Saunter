@@ -2,12 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import pathsReducer from './pathsSlice';
 import formReducer from './formSlice';
-import selectPathReducer from './selectPath';
+import currentPathReducer from './currentPathSlice';
 
 export default configureStore({
   reducer: {
     paths: pathsReducer,
     form: formReducer,
-    selectPath: selectPathReducer
+    currentPath: currentPathReducer
   }
 });

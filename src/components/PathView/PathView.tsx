@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StoreModel } from '../../model/store-model';
 
 export default function PathView() {
-  const selectPath: any = useSelector((state: StoreModel) => state.selectPath);
+  const selectPath: any = useSelector((state: StoreModel) => state.currentPath);
   const dispatch = useDispatch();
 
   const onRemovePath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    dispatch({ type: 'paths/pathRemove', payload: target.id });
-    dispatch({ type: 'selectPath/selectPathRemove', payload: null });
+    dispatch({ type: 'paths/remove', payload: target.id });
+    dispatch({ type: 'currentPath/remove', payload: null });
   };
 
   return (

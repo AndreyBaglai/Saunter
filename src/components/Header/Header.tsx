@@ -9,7 +9,7 @@ import styles from './Header.module.css';
 
 export default function Header() {
   const dispatch = useDispatch();
-  const onOpenForm = () => dispatch({ type: 'form/formOpen', payload: true });
+  const onOpenForm = () => dispatch({ type: 'form/open', payload: true });
 
   return (
     <>
