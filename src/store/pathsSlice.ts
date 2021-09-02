@@ -17,7 +17,11 @@ const initialState: PathModel[] = [
 const pathsSlice = createSlice({
   name: 'paths',
   initialState,
-  reducers: {},
+  reducers: {
+    pathAdded(state, action) {
+      state.unshift(action.payload);
+    }
+  },
 });
 
 export default pathsSlice.reducer;

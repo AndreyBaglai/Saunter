@@ -8,6 +8,8 @@ import CustomButton from '../Button/CustomButton';
 import styles from './FormModal.module.css';
 import { StoreModel } from '../../model/store-model';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit'
+import { PathModel } from '../../model/path-model';
 
 const rootForm = document.getElementById('root-form') as HTMLElement;
 
@@ -16,6 +18,20 @@ export default function FormModal() {
 
   const dispatch = useDispatch();
   const onCloseForm = () => dispatch({ type: 'form/closeForm', payload: false });
+  const onCreatePath = (formData: any) => {
+    console.log(formData);
+    const newPath: PathModel = {
+      id: nanoid(),
+      title: formData.title,
+      description: {
+        short: formData.shortText,
+        full: formData.fullText || ''
+      },
+      distance: '4444',
+      map: ''
+    };
+    dispatch({ type: 'paths/pathAdded', payload: newPath });
+  }
 
   const validateMessages = {
     required: '${label} is required!',
@@ -27,8 +43,6 @@ export default function FormModal() {
       range: '${label} must be between ${min} and ${max}',
     },
   };
-
-  const onCreatePath = (data: any) => console.log(data);
 
   return isOpen
     ? ReactDOM.createPortal(
@@ -75,13 +89,13 @@ export default function FormModal() {
                         required: true,
                       },
                     ]}
-                    name="short-description"
+                    name="shortText"
                     label="Short description">
                     <Input.TextArea />
                   </Form.Item>
                   <Form.Item
                     className={styles.formField}
-                    name="full-description"
+                    name="fullText"
                     label="Full description">
                     <Input.TextArea />
                   </Form.Item>
@@ -90,7 +104,7 @@ export default function FormModal() {
                   </Form.Item>
 
                   <Form.Item>
-                    <CustomButton handleFunc={() => {}} text="Add path" size="large" htmlType="submit" />
+                    <CustomButton handleFunc={onCreatePath} text="Add path" size="large" htmlType="submit" />
                   </Form.Item>
                 </Form>
               </Col>

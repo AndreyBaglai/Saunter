@@ -17,6 +17,4 @@ const formSlice = createSlice({
   },
 });
 
-export const { openForm, closeForm } = formSlice.actions;
-
 export default formSlice.reducer;
