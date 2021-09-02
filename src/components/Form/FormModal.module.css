@@ -1,3 +1,11 @@
+.modalWrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100vw;
+}
+
 .modal {
   background: rgb(87, 87, 87);
   padding: 24px;

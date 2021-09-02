@@ -10,6 +10,7 @@ type CustomButtonPropsType = {
   htmlType?: any;
   shape?: any;
   icon?: any;
+  handleFunc: any;
 };
 
 export default function CustomButton({
@@ -18,9 +19,12 @@ export default function CustomButton({
   shape = 'round',
   icon,
   htmlType = 'button',
+  handleFunc = () => {}
+  
 }: CustomButtonPropsType) {
   return (
     <Button
+      onClick={handleFunc}
       className={styles.customBtn}
       size={size}
       type="ghost"

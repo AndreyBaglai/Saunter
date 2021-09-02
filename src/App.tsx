@@ -12,7 +12,7 @@ function App() {
     <div className={styles.app}>
       <Header />
       <Main />
-      {/* <FormModal /> */}
+      <FormModal />
     </div>
   );
 }
