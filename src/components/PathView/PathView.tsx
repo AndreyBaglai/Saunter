@@ -11,7 +11,7 @@ export default function PathView() {
 
   const onRemovePath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    dispatch({ type: 'paths/pathRemoved', payload: target.id });
+    dispatch({ type: 'paths/pathRemove', payload: target.id });
     dispatch({ type: 'selectPath/selectPathRemove', payload: null });
   };
 

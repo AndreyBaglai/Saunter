@@ -15,11 +15,11 @@ const rootForm = document.getElementById('root-form') as HTMLElement;
 
 export default function FormModal() {
   const isOpen = useSelector((state: StoreModel) => state.form.isOpen);
-
   const dispatch = useDispatch();
+
   const onCloseForm = () => dispatch({ type: 'form/formClose', payload: false });
   const onCreatePath = (formData: any) => {
-    console.log(formData);
+
     const newPath: PathModel = {
       id: nanoid(),
       title: formData.title,
@@ -31,7 +31,8 @@ export default function FormModal() {
       distance: '4444',
       map: ''
     };
-    dispatch({ type: 'paths/pathAdded', payload: newPath });
+    
+    dispatch({ type: 'paths/pathAdd', payload: newPath });
   }
 
   const validateMessages = {

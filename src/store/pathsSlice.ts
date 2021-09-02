@@ -19,13 +19,13 @@ const pathsSlice = createSlice({
   name: 'paths',
   initialState,
   reducers: {
-    pathAdded(state, action) {
+    pathAdd(state, action) {
       state.unshift(action.payload);
     },
-    pathRemoved(state, action) {
+    pathRemove(state, action) {
       return state.filter((path: PathModel) => path.id !== action.payload);
     },
-    pathSetSelected(state, action) {
+    pathSetSelect(state, action) {
       state.forEach((path: PathModel) => {
         path.id === action.payload ? (path.selected = true) : (path.selected = false);
       });

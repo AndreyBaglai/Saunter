@@ -12,6 +12,14 @@
   transition: all 0.5s ease;
 }
 
+.emptyText {
+  color: rgba(202, 197, 197, 0.885);
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
 .listItem:hover {
   background: #9aed00;
 }
