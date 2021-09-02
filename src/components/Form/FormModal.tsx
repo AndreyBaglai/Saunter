@@ -17,7 +17,7 @@ export default function FormModal() {
   const isOpen = useSelector((state: StoreModel) => state.form.isOpen);
 
   const dispatch = useDispatch();
-  const onCloseForm = () => dispatch({ type: 'form/closeForm', payload: false });
+  const onCloseForm = () => dispatch({ type: 'form/formClose', payload: false });
   const onCreatePath = (formData: any) => {
     console.log(formData);
     const newPath: PathModel = {
@@ -27,6 +27,7 @@ export default function FormModal() {
         short: formData.shortText,
         full: formData.fullText || ''
       },
+      selected: false,
       distance: '4444',
       map: ''
     };

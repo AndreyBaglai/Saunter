@@ -3,6 +3,7 @@
   color: #fff;
   border: 1px solid #9aed00;
   border-radius: 10px;
+  margin: 0 auto;
 }
 
 .card {
@@ -19,4 +20,13 @@
 
 .wrapperBtn {
   margin: 0 auto;
+}
+
+.defaultText {
+  color: rgba(202, 197, 197, 0.885);
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  margin: 30px auto 0;
+  text-align: center;
 }

@@ -8,10 +8,10 @@ const formSlice = createSlice({
   name: 'form',
   initialState,
   reducers: {
-    openForm(state, action) {
+    formOpen(state, action) {
       return { ...state, isOpen: action.payload };
     },
-    closeForm(state, action) {
+    formClose(state, action) {
       return { ...state, isOpen: action.payload };
     },
   },
