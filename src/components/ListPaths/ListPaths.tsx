@@ -10,13 +10,18 @@ import { PathModel } from '../../model/path-model';
 
 export default function ListPaths() {
   const paths = useSelector((state: StoreModel) => state.paths);
+  const pathsSelected = useSelector((state: StoreModel) => state.selectPath);
   const dispatch = useDispatch();
 
   const onSelectedPath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    console.log(target);
-    dispatch({type: 'paths/pathSetSelected', payload: target.id});
-  }
+    const path = paths.find((path) => path.id === target.id);
+    dispatch({ type: 'paths/pathSetSelected', payload: target.id });
+    dispatch({
+      type: 'selectPath/selectPathSet',
+      payload: path,
+    });
+  };
 
   return (
     <List
@@ -36,7 +41,7 @@ export default function ListPaths() {
             }
           />
           <Typography.Text className={styles.distance}>{`${path.distance} km`}</Typography.Text>
-          <RightOutlined className={styles.leftArrow}/>
+          <RightOutlined className={styles.leftArrow} />
         </List.Item>
       )}></List>
   );
