@@ -8,7 +8,7 @@ import CustomButton from '../Button/CustomButton';
 import styles from './FormModal.module.css';
 import { StoreModel } from '../../model/store-model';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit'
+import { nanoid } from '@reduxjs/toolkit';
 import { PathModel } from '../../model/path-model';
 
 const rootForm = document.getElementById('root-form') as HTMLElement;
@@ -19,31 +19,20 @@ export default function FormModal() {
 
   const onCloseForm = () => dispatch({ type: 'form/formClose', payload: false });
   const onCreatePath = (formData: any) => {
-
     const newPath: PathModel = {
       id: nanoid(),
       title: formData.title,
       description: {
         short: formData.shortText,
-        full: formData.fullText || ''
+        full: formData.fullText || '',
       },
       selected: false,
       distance: '4444',
-      map: ''
+      map: '',
     };
-    
-    dispatch({ type: 'paths/pathAdd', payload: newPath });
-  }
 
-  const validateMessages = {
-    required: '${label} is required!',
-    types: {
-      email: '${label} is not a valid email!',
-      number: '${label} is not a valid number!',
-    },
-    number: {
-      range: '${label} must be between ${min} and ${max}',
-    },
+    dispatch({ type: 'paths/pathAdd', payload: newPath });
+    dispatch({ type: 'form/formClose', payload: false });
   };
 
   return isOpen
@@ -70,8 +59,7 @@ export default function FormModal() {
                   className={styles.form}
                   layout="vertical"
                   name="new-path"
-                  onFinish={onCreatePath}
-                  validateMessages={validateMessages}>
+                  onFinish={onCreatePath}>
                   <Form.Item
                     className={styles.formField}
                     name="title"
@@ -79,6 +67,7 @@ export default function FormModal() {
                     rules={[
                       {
                         required: true,
+                        message: 'Please, input title path',
                       },
                     ]}>
                     <Input />
@@ -89,6 +78,7 @@ export default function FormModal() {
                     rules={[
                       {
                         required: true,
+                        message: 'Please, input short description path',
                       },
                     ]}
                     name="shortText"
@@ -98,7 +88,13 @@ export default function FormModal() {
                   <Form.Item
                     className={styles.formField}
                     name="fullText"
-                    label="Full description">
+                    label="Full description"
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please, input full description path',
+                      },
+                    ]}>
                     <Input.TextArea />
                   </Form.Item>
                   <Form.Item>
@@ -106,7 +102,12 @@ export default function FormModal() {
                   </Form.Item>
 
                   <Form.Item>
-                    <CustomButton handleFunc={onCreatePath} text="Add path" size="large" htmlType="submit" />
+                    <CustomButton
+                      handleFunc={() => {}}
+                      text="Add path"
+                      size="large"
+                      htmlType="submit"
+                    />
                   </Form.Item>
                 </Form>
               </Col>
