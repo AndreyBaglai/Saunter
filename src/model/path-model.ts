@@ -6,6 +6,6 @@ export type PathModel = {
     full: string;
   };
   selected: boolean;
-  distance: string;
+  distance: number;
   map: any;
 }

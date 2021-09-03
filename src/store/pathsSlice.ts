@@ -10,7 +10,7 @@ const initialState = [
       full: 'Some text 1eeeeeeeeeeeeeeeeeeeee e e e ee e ee eeeeeeeeeeeeeeeeeeeeeeeee e e e e e eeeeeeeeeeeeee',
     },
     selected: false,
-    distance: '1.13',
+    distance: 1.13,
     map: '',
   },
 ];

@@ -36,8 +36,8 @@ export default function PathView() {
           </div>
         </Card>
       ) : (
-        <Typography.Text className={styles.defaultText}>Selectany path</Typography.Text>
+        <Typography.Text className={styles.defaultText}>Select any path</Typography.Text>
       )}
     </Col>
   );
-}
+} 
