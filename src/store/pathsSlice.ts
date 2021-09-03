@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PathModel } from '../model/path-model';
 
 const initialState = [
   {
@@ -11,7 +10,7 @@ const initialState = [
     },
     selected: false,
     distance: 1.13,
-    map: '',
+    directions: [],
   },
 ];
 
@@ -23,10 +22,10 @@ const pathsSlice = createSlice({
       state.unshift(action.payload);
     },
     remove(state, action) {
-      return state.filter((path: PathModel) => path.id !== action.payload);
+      return state.filter((path) => path.id !== action.payload);
     },
     select(state, action) {
-      state.forEach((path: PathModel) => {
+      state.forEach((path) => {
         path.id === action.payload ? (path.selected = true) : (path.selected = false);
       });
     },

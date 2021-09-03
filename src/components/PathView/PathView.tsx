@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Button, Card, Typography } from 'antd';
+import Map from '../Map/Map';
 
 import styles from './PathView.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +26,7 @@ export default function PathView() {
           extra={<h5 className={styles.distance}>{selectPath.path.distance} km</h5>}
           style={{ width: '100%' }}>
           <p>{selectPath.path.description?.full}</p>
-          <div>Map</div>
+          <Map id="pathMap" isEdit={false} />
           <div className={styles.wrapperBtn}>
             <Button block type="link">
               Add to favorite

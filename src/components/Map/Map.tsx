@@ -3,7 +3,13 @@ import React, { useEffect } from 'react';
 
 import styles from './Map.module.css';
 
-export default function Map() {
+type MapPropsType = {
+  id: string;
+  isEdit: boolean;
+  onSetCoordinates?: (data: any) => void;
+};
+
+export default function Map({ id, isEdit, onSetCoordinates = () => {} }: MapPropsType) {
   useEffect(() => {
     let map: any;
     let poly: any;
@@ -28,7 +34,7 @@ export default function Map() {
       //   return coords;
       // })
       .then(() => {
-        const mapEl = document.getElementById('map') as HTMLElement;
+        const mapEl = document.getElementById(id) as HTMLElement;
         if (mapEl) {
           map = new google.maps.Map(mapEl, {
             center: { lat: 48.450001, lng: 34.983334 },
@@ -49,6 +55,12 @@ export default function Map() {
             // and it will automatically appear.
             path.push(e.latLng);
 
+            const dataCoords = poly.getPath().Be || [];
+
+            if (dataCoords && dataCoords.length > 1) {
+              onSetCoordinates([...dataCoords]);
+            }
+           
             console.dir(poly.getPath().Be);
 
             // Add a new marker at the new plotted point on the polyline.
@@ -60,10 +72,10 @@ export default function Map() {
           };
 
           // Add a listener for the click event
-          map.addListener('click', addMarker);
+          isEdit && map.addListener('click', addMarker);
         }
       });
   }, []);
 
-  return <div id="map" className={styles.mapWrapper}></div>;
+  return <div id={id} className={styles.mapWrapper}></div>;
 }

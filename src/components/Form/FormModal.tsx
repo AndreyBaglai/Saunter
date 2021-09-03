@@ -16,13 +16,15 @@ const rootForm = document.getElementById('root-form') as HTMLElement;
 
 export default function FormModal() {
   const [totalDistance, setTotalDistance] = useState(0);
+  const [currentDirections, setCurrentDirection] = useState([]);
   const isOpen = useSelector((state: StoreModel) => state.form.isOpen);
   const dispatch = useDispatch();
 
   const onCloseForm = () => {
     dispatch({ type: 'form/close', payload: false });
     setTotalDistance(0);
-  }
+    setCurrentDirection([]);
+  };
 
   const onCreatePath = (formData: any) => {
     const newPath: PathModel = {
@@ -30,16 +32,17 @@ export default function FormModal() {
       title: formData.title,
       description: {
         short: formData.shortText,
-        full: formData.fullText || '',
+        full: formData.fullText,
       },
       selected: false,
       distance: totalDistance,
-      map: '',
+      directions: currentDirections,
     };
 
     dispatch({ type: 'paths/add', payload: newPath });
     dispatch({ type: 'form/close', payload: false });
     setTotalDistance(0);
+    setCurrentDirection([]);
   };
 
   return isOpen
@@ -105,7 +108,8 @@ export default function FormModal() {
                     <Input.TextArea />
                   </Form.Item>
                   <Form.Item>
-                    <Typography.Text className={styles.distance}>{`Length: ${totalDistance} km`}</Typography.Text>
+                    <Typography.Text
+                      className={styles.distance}>{`Length: ${totalDistance} km`}</Typography.Text>
                   </Form.Item>
 
                   <Form.Item>
@@ -119,7 +123,7 @@ export default function FormModal() {
                 </Form>
               </Col>
               <Col span={11} offset={2}>
-                <Map />
+                <Map id="mapForm" isEdit={true} onSetCoordinates={setCurrentDirection} />
               </Col>
             </Row>
           </Col>

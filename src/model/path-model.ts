@@ -7,5 +7,5 @@ export type PathModel = {
   };
   selected: boolean;
   distance: number;
-  map: any;
+  directions: any;
 }
