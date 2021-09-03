@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Col, PageHeader, Row, Typography, Form, Input, Button } from 'antd';
 
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined, CompassOutlined } from '@ant-design/icons';
 import CustomButton from '../Button/CustomButton';
 
 import styles from './FormModal.module.css';
@@ -38,6 +38,7 @@ export default function FormModal() {
 
   useEffect(() => {
     let map: any;
+    let poly: any;
 
     //      https://maps.googleapis.com/maps/api/directions/json?
     // origin=90:37.773279,-122.468780
@@ -69,30 +70,35 @@ export default function FormModal() {
             zoom: 15,
           });
 
+          poly = new google.maps.Polyline({
+            strokeColor: '#000000',
+            strokeOpacity: 1.0,
+            strokeWeight: 3,
+          });
+          poly.setMap(map);
+
           const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
           let labelIndex = 0;
 
-          const addMarker = (location: google.maps.LatLngLiteral, map: google.maps.Map) => {
-            // Add the marker at the clicked location, and add the next-available label
-            // from the array of alphabetical characters.
+          const addMarker = (e: google.maps.MapMouseEvent) => {
+            const path = poly.getPath();
+
+            // Because path is an MVCArray, we can simply append a new coordinate
+            // and it will automatically appear.
+            path.push(e.latLng);
+            
+            console.dir(poly.getPath().Be)
+
+            // Add a new marker at the new plotted point on the polyline.
             new google.maps.Marker({
-              position: location,
-              label: labels[labelIndex++ % labels.length],
+              position: e.latLng,
+              title: "#" + path.getLength(),
               map: map,
             });
           };
 
-          google.maps.event.addListener(map, 'click', (e) => {
-            addMarker(e.latLng, map);
-          });
-
-          // Adds a marker to the map.
-
-          // const marker = new google.maps.Marker({
-          //   position: { lat: 48.450001, lng: 34.983334 },
-          //   map,
-          //   optimized: false,
-          // });
+          // Add a listener for the click event
+          map.addListener('click', addMarker);
         }
       });
   });
@@ -160,7 +166,7 @@ export default function FormModal() {
                     <Input.TextArea />
                   </Form.Item>
                   <Form.Item>
-                    <Typography.Text className={styles.distance}>Length: 1.13 km</Typography.Text>
+                    <Typography.Text className={styles.distance}>Length: 0 km</Typography.Text>
                   </Form.Item>
 
                   <Form.Item>
