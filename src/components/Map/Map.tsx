@@ -14,8 +14,6 @@ export default function Map({ id, isEdit, onSetCoordinates = () => {} }: MapProp
     let map: any;
     let poly: any;
 
-    // `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=40.659569%2C-73.933783&origins=40.6655101%2C-73.89188969999998&key=${REACT_APP_API_KEY}`
-
     const loader = new Loader({
       apiKey: `${process.env.REACT_APP_API_KEY}`,
       version: 'weekly',
@@ -57,7 +55,7 @@ export default function Map({ id, isEdit, onSetCoordinates = () => {} }: MapProp
 
             const dataCoords = poly.getPath().Be || [];
 
-            if (dataCoords && dataCoords.length > 1) {
+            if (dataCoords) {
               onSetCoordinates([...dataCoords]);
             }
            

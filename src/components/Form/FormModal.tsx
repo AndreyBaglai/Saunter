@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Col, PageHeader, Row, Typography, Form, Input } from 'antd';
 
@@ -13,12 +13,34 @@ import { PathModel } from '../../model/path-model';
 import Map from '../Map/Map';
 
 const rootForm = document.getElementById('root-form') as HTMLElement;
+//const proxy = 'https://cors-anywhere.herokuapp.com/';
 
 export default function FormModal() {
   const [totalDistance, setTotalDistance] = useState(0);
   const [currentDirections, setCurrentDirection] = useState([]);
   const isOpen = useSelector((state: StoreModel) => state.form.isOpen);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentDirections.length > 1) {
+      const destination = currentDirections[currentDirections.length - 1];
+      const origin = currentDirections[currentDirections.length - 2];
+      countDistance(destination, origin);
+    }
+  }, [currentDirections]);
+
+  const countDistance = async (destination: any, origin: any) => {
+    await fetch(
+      `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${destination.lat()}%2C${destination.lng()}&origins=${origin.lat()}%2C${origin.lng()}&key=${
+        process.env.REACT_APP_API_KEY
+      }`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.rows[0].elements[0].distance.value);
+        setTotalDistance((state) => (state += data.rows[0].elements[0].distance.value));
+      });
+  };
 
   const onCloseForm = () => {
     dispatch({ type: 'form/close', payload: false });
