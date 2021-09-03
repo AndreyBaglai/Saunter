@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Col, PageHeader, Row, Typography, Form, Input } from 'antd';
+import { Col, PageHeader, Row, Typography, Form, Input, Button } from 'antd';
 
 import { CloseOutlined } from '@ant-design/icons';
 import CustomButton from '../Button/CustomButton';
@@ -10,6 +10,7 @@ import { StoreModel } from '../../model/store-model';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { PathModel } from '../../model/path-model';
+import { Loader } from '@googlemaps/js-api-loader';
 
 const rootForm = document.getElementById('root-form') as HTMLElement;
 
@@ -34,6 +35,67 @@ export default function FormModal() {
     dispatch({ type: 'paths/add', payload: newPath });
     dispatch({ type: 'form/close', payload: false });
   };
+
+  useEffect(() => {
+    let map: any;
+
+    //      https://maps.googleapis.com/maps/api/directions/json?
+    // origin=90:37.773279,-122.468780
+    // &destination=37.773245,-122.469502
+    // &key=YOUR_API_KEY
+
+    const loader = new Loader({
+      apiKey: `${process.env.REACT_APP_DIRECTIONS_API_KEY}`,
+      version: 'weekly',
+    });
+
+    loader
+      .load()
+      // .then(() => {
+      //   let coords = {};
+      //   const success = (position: any) => {
+      //     const { latitude, longitude } = position.coords;
+      //     coords = { lat: latitude, lng: longitude };
+      //   };
+
+      //   navigator.geolocation.getCurrentPosition(success);
+      //   return coords;
+      // })
+      .then(() => {
+        const mapEl = document.getElementById('map') as HTMLElement;
+        if (mapEl) {
+          map = new google.maps.Map(mapEl, {
+            center: { lat: 48.450001, lng: 34.983334 },
+            zoom: 15,
+          });
+
+          const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          let labelIndex = 0;
+
+          const addMarker = (location: google.maps.LatLngLiteral, map: google.maps.Map) => {
+            // Add the marker at the clicked location, and add the next-available label
+            // from the array of alphabetical characters.
+            new google.maps.Marker({
+              position: location,
+              label: labels[labelIndex++ % labels.length],
+              map: map,
+            });
+          };
+
+          google.maps.event.addListener(map, 'click', (e) => {
+            addMarker(e.latLng, map);
+          });
+
+          // Adds a marker to the map.
+
+          // const marker = new google.maps.Marker({
+          //   position: { lat: 48.450001, lng: 34.983334 },
+          //   map,
+          //   optimized: false,
+          // });
+        }
+      });
+  });
 
   return isOpen
     ? ReactDOM.createPortal(
@@ -112,7 +174,7 @@ export default function FormModal() {
                 </Form>
               </Col>
               <Col span={11} offset={2}>
-                Map API
+                <div id="map" className={styles.mapWrapper}></div>
               </Col>
             </Row>
           </Col>

@@ -25,7 +25,7 @@ export default function PathView() {
           extra={<h5 className={styles.distance}>{selectPath.path.distance} km</h5>}
           style={{ width: '100%' }}>
           <p>{selectPath.path.description?.full}</p>
-          <p>Map</p>
+          <div>Map</div>
           <div className={styles.wrapperBtn}>
             <Button block type="link">
               Add to favorite
