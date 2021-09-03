@@ -13,7 +13,6 @@ import { PathModel } from '../../model/path-model';
 import Map from '../Map/Map';
 
 const rootForm = document.getElementById('root-form') as HTMLElement;
-//const proxy = 'https://cors-anywhere.herokuapp.com/';
 
 export default function FormModal() {
   const [totalDistance, setTotalDistance] = useState(0);
@@ -30,16 +29,23 @@ export default function FormModal() {
   }, [currentDirections]);
 
   const countDistance = async (destination: any, origin: any) => {
-    await fetch(
-      `https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${destination.lat()}%2C${destination.lng()}&origins=${origin.lat()}%2C${origin.lng()}&key=${
-        process.env.REACT_APP_API_KEY
-      }`,
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.rows[0].elements[0].distance.value);
-        setTotalDistance((state) => (state += data.rows[0].elements[0].distance.value));
-      });
+    const service = new google.maps.DistanceMatrixService();
+
+    service.getDistanceMatrix(
+      {
+        origins: [{ lat: origin.lat(), lng: origin.lng() }, 'Start'],
+        destinations: ['End', { lat: destination.lat(), lng: destination.lng() }],
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (response, status) => {
+        if (status === 'OK') {
+          console.log(response.rows[0].elements[1].distance.value);
+          setTotalDistance(
+            (state) => (state += response.rows[0].elements[1].distance.value / 1000),
+          );
+        }
+      },
+    );
   };
 
   const onCloseForm = () => {
