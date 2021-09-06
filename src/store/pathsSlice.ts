@@ -9,7 +9,7 @@ const initialState = [
       full: 'Some full text',
     },
     selected: false,
-    distance: 1.130,
+    distance: 35.134,
     directions: [{lat: () => 48.4530, lng: () => 35.9845}, {lat: () => 48.4430, lng: () => 34.9845}],
   },
 ];
@@ -19,7 +19,7 @@ const pathsSlice = createSlice({
   initialState,
   reducers: {
     add(state, action) {
-      return state = [action.payload, ...state];
+      return [action.payload, ...state];
     },
     remove(state, action) {
       return state.filter((path) => path.id !== action.payload);
