@@ -1,17 +1,26 @@
 import { Loader } from '@googlemaps/js-api-loader';
 import React, { useEffect } from 'react';
-import CustomButton from '../Button/CustomButton';
+import { useSelector } from 'react-redux';
+import { StoreModel } from '../../model/store-model';
 
 import styles from './Map.module.css';
 
 type MapPropsType = {
   id: string;
   isEdit: boolean;
-  markers: boolean;
+  isSetMarkers: boolean;
+  markers: any;
   onSetCoordinates?: (data: any) => void;
 };
 
-export default function Map({ id, isEdit, markers, onSetCoordinates = () => {} }: MapPropsType) {
+export default function Map({
+  id,
+  isEdit,
+  isSetMarkers,
+  markers,
+  onSetCoordinates = () => {},
+}: MapPropsType) {
+  const path = useSelector((state: StoreModel) => state.currentPath);
   useEffect(() => {
     let map: any;
     let poly: any;
@@ -55,32 +64,55 @@ export default function Map({ id, isEdit, markers, onSetCoordinates = () => {} }
             // and it will automatically appear.
             path.push(e.latLng);
 
+            // console.log('coord', e.latLng);
             const dataCoords = poly.getPath().Be || [];
 
             if (dataCoords) {
               onSetCoordinates([...dataCoords]);
             }
 
-            console.dir(poly.getPath().Be);
+            // console.dir(poly.getPath().Be);
 
             // Add a new marker at the new plotted point on the polyline.
             new google.maps.Marker({
               position: e.latLng,
               title: '#' + path.getLength(),
-              map: map,
+              map,
             });
           };
 
           // Add a listener for the click event
           isEdit && map.addListener('click', addMarker);
+
+          // Set markers on map
+          !isEdit &&
+            (poly = new google.maps.Polyline({
+              path: [...path?.directions],
+              strokeColor: '#9aed00',
+              strokeOpacity: 1.0,
+              strokeWeight: 3,
+            }));
+          poly.setMap(map);
+
+          path?.directions &&
+            path.directions.forEach((markerCoords: any) => {
+              console.log('sdsssd', markerCoords);
+
+              new google.maps.Marker({
+                position: {
+                  lat: markerCoords.lat,
+                  lng: markerCoords.lng,
+                },
+                map,
+              });
+            });
         }
       });
-  }, [isEdit, markers]);
+  }, [isEdit, isSetMarkers]);
 
   return (
     <>
       <div id={id} className={styles.mapWrapper}></div>
-     
     </>
   );
 }

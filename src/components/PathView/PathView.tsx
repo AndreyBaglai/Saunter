@@ -18,20 +18,20 @@ export default function PathView() {
 
   return (
     <Col span={11} offset={1} className={styles.pathView}>
-      {selectPath.path ? (
+      {Object.keys(selectPath).length ? (
         <Card
           headStyle={{ color: '#fff', fontSize: '24px' }}
           className={styles.card}
-          title={selectPath.path.title}
-          extra={<h5 className={styles.distance}>{selectPath.path.distance} km</h5>}
+          title={selectPath.title}
+          extra={<h5 className={styles.distance}>{selectPath.distance} km</h5>}
           style={{ width: '100%' }}>
-          <p>{selectPath.path.description?.full}</p>
-          <Map id="pathMap" isEdit={false} markers={false} />
+          <p>{selectPath.description?.full}</p>
+          <Map id="pathMap" isEdit={false} isSetMarkers={true} markers={selectPath.directions || []} />
           <div className={styles.wrapperBtn}>
             <Button block type="link">
               Add to favorite
             </Button>
-            <Button id={selectPath.path.id} block type="link" danger onClick={onRemovePath}>
+            <Button id={selectPath.id} block type="link" danger onClick={onRemovePath}>
               Remove
             </Button>
           </div>

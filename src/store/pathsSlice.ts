@@ -3,14 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = [
   {
     id: 'dhfhdhj',
-    title: '1',
+    title: 'Test path',
     description: {
-      short: 'Short text',
-      full: 'Some text 1eeeeeeeeeeeeeeeeeeeee e e e ee e ee eeeeeeeeeeeeeeeeeeeeeeeee e e e e e eeeeeeeeeeeeee',
+      short: 'Some short text',
+      full: 'Some full text',
     },
     selected: false,
-    distance: 1.13,
-    directions: [],
+    distance: 1.130,
+    directions: [{lat: 44.0330, lng: 55.5445}, {lat: 33.0330, lng: 51.5045}],
   },
 ];
 
@@ -19,7 +19,10 @@ const pathsSlice = createSlice({
   initialState,
   reducers: {
     add(state, action) {
-      state.unshift(action.payload);
+      return state = [action.payload, ...state];
+    },
+    addDirections(state, action) {
+
     },
     remove(state, action) {
       return state.filter((path) => path.id !== action.payload);

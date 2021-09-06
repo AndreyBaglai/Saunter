@@ -1,18 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  path: null,
-};
+const initialState = {};
 
 const currentPathSlice = createSlice({
   name: 'currentPath',
   initialState,
   reducers: {
     set(state, action) {
-      state.path = action.payload;
+      return {...action.payload, ...state};
     },
     remove(state, action) {
-      state.path = action.payload;
+      state = {...action.payload};
     },
   },
 });

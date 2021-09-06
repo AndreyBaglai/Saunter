@@ -40,9 +40,9 @@ export default function FormModal() {
       },
       (response, status) => {
         if (status === 'OK') {
-          console.log(response.rows[0].elements[1].distance.value);
+          // console.log(response.rows[0].elements[1].distance.value);
           setTotalDistance(
-            (state) => (state += response.rows[0].elements[1].distance.value / 1000),
+            (state) => (state += Number((response.rows[0].elements[1].distance.value / 1000).toFixed(3))),
           );
         }
       },
@@ -71,7 +71,7 @@ export default function FormModal() {
       },
       selected: false,
       distance: totalDistance,
-      directions: currentDirections,
+      directions: [...currentDirections],
     };
 
     dispatch({ type: 'paths/add', payload: newPath });
@@ -162,7 +162,8 @@ export default function FormModal() {
                   id="mapForm"
                   isEdit={true}
                   onSetCoordinates={setCurrentDirection}
-                  markers={includeMarkers}
+                  isSetMarkers={includeMarkers}
+                  markers={[]}
                 />
                 <div className={styles.removeBtn}>
                   <CustomButton
