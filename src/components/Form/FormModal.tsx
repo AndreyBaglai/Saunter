@@ -16,18 +16,18 @@ const rootForm = document.getElementById('root-form') as HTMLElement;
 
 export default function FormModal() {
   const [totalDistance, setTotalDistance] = useState(0);
-  const [currentDirections, setCurrentDirection] = useState([]);
   const [includeMarkers, setIncludeMarkers] = useState(false);
   const isOpen = useSelector((state: StoreModel) => state.form.isOpen);
+  const directions = useSelector((state: StoreModel) => state.directions);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentDirections.length > 1) {
-      const destination = currentDirections[currentDirections.length - 1];
-      const origin = currentDirections[currentDirections.length - 2];
+    if (directions.length > 1) {
+      const destination = directions[directions.length - 1];
+      const origin = directions[directions.length - 2];
       countDistance(destination, origin);
     }
-  }, [currentDirections]);
+  }, [directions]);
 
   const countDistance = async (destination: any, origin: any) => {
     const service = new google.maps.DistanceMatrixService();
@@ -40,10 +40,10 @@ export default function FormModal() {
       },
       (response, status) => {
         if (status === 'OK') {
-          // console.log(response.rows[0].elements[1].distance.value);
-          setTotalDistance(
-            (state) => (state += Number((response.rows[0].elements[1].distance.value / 1000).toFixed(3))),
-          );
+          setTotalDistance((state) => {
+            state += response.rows[0].elements[1].distance.value / 1000;
+            return Number(state.toFixed(3));
+          });
         }
       },
     );
@@ -52,12 +52,12 @@ export default function FormModal() {
   const onCloseForm = () => {
     dispatch({ type: 'form/close', payload: false });
     setTotalDistance(0);
-    setCurrentDirection([]);
+    dispatch({ type: 'directions/clean', payload: [] });
   };
 
   const onRemoveMarkers = () => {
     setTotalDistance(0);
-    setCurrentDirection([]);
+    dispatch({ type: 'directions/clean', payload: [] });
     setIncludeMarkers(!includeMarkers);
   };
 
@@ -71,13 +71,13 @@ export default function FormModal() {
       },
       selected: false,
       distance: totalDistance,
-      directions: [...currentDirections],
+      directions,
     };
 
     dispatch({ type: 'paths/add', payload: newPath });
     dispatch({ type: 'form/close', payload: false });
     setTotalDistance(0);
-    setCurrentDirection([]);
+    dispatch({ type: 'directions/clean', payload: [] });
   };
 
   return isOpen
@@ -161,9 +161,8 @@ export default function FormModal() {
                 <Map
                   id="mapForm"
                   isEdit={true}
-                  onSetCoordinates={setCurrentDirection}
+                  //onSetCoordinates={setCurrentDirection}
                   isSetMarkers={includeMarkers}
-                  markers={[]}
                 />
                 <div className={styles.removeBtn}>
                   <CustomButton

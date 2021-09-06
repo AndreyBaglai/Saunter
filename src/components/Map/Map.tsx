@@ -1,6 +1,8 @@
 import { Loader } from '@googlemaps/js-api-loader';
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { latest } from '@reduxjs/toolkit/node_modules/immer/dist/internal';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { PathModel } from '../../model/path-model';
 import { StoreModel } from '../../model/store-model';
 
 import styles from './Map.module.css';
@@ -9,7 +11,7 @@ type MapPropsType = {
   id: string;
   isEdit: boolean;
   isSetMarkers: boolean;
-  markers: any;
+  path?: any;
   onSetCoordinates?: (data: any) => void;
 };
 
@@ -17,10 +19,11 @@ export default function Map({
   id,
   isEdit,
   isSetMarkers,
-  markers,
   onSetCoordinates = () => {},
 }: MapPropsType) {
-  const path = useSelector((state: StoreModel) => state.currentPath);
+  const pathInfo = useSelector((state: StoreModel) => state.currentPath);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     let map: any;
     let poly: any;
@@ -68,7 +71,7 @@ export default function Map({
             const dataCoords = poly.getPath().Be || [];
 
             if (dataCoords) {
-              onSetCoordinates([...dataCoords]);
+              dispatch({ type: 'directions/add', payload: dataCoords });
             }
 
             // console.dir(poly.getPath().Be);
@@ -86,29 +89,35 @@ export default function Map({
 
           // Set markers on map
           !isEdit &&
+            pathInfo?.directions &&
             (poly = new google.maps.Polyline({
-              path: [...path?.directions],
+              path: [
+                ...pathInfo?.directions.map((coord: any) => ({
+                  lat: coord.lat(),
+                  lng: coord.lng(),
+                })),
+              ],
               strokeColor: '#9aed00',
               strokeOpacity: 1.0,
               strokeWeight: 3,
             }));
+
           poly.setMap(map);
 
-          path?.directions &&
-            path.directions.forEach((markerCoords: any) => {
-              console.log('sdsssd', markerCoords);
-
+          !isEdit &&
+            pathInfo?.directions &&
+            pathInfo.directions.forEach((markerCoords: any) => {
               new google.maps.Marker({
                 position: {
-                  lat: markerCoords.lat,
-                  lng: markerCoords.lng,
+                  lat: markerCoords.lat(),
+                  lng: markerCoords.lng(),
                 },
                 map,
               });
             });
         }
       });
-  }, [isEdit, isSetMarkers]);
+  }, [isEdit, isSetMarkers, pathInfo]);
 
   return (
     <>

@@ -5,6 +5,8 @@ import PathView from '../PathView/PathView';
 import PathsListWrapper from '../PathsListWrapper/PathsListWrapper';
 
 import styles from './Main.module.css';
+import { StoreModel } from '../../model/store-model';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Main() {
   return (

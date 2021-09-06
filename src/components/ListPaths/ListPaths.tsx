@@ -15,6 +15,7 @@ export default function ListPaths() {
   const onSelectedPath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
     const path = paths.find((path) => path.id === target.id);
+    console.log('path', path);
 
     dispatch({ type: 'paths/select', payload: target.id });
     dispatch({
