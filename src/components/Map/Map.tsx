@@ -1,15 +1,17 @@
 import { Loader } from '@googlemaps/js-api-loader';
 import React, { useEffect } from 'react';
+import CustomButton from '../Button/CustomButton';
 
 import styles from './Map.module.css';
 
 type MapPropsType = {
   id: string;
   isEdit: boolean;
+  markers: boolean;
   onSetCoordinates?: (data: any) => void;
 };
 
-export default function Map({ id, isEdit, onSetCoordinates = () => {} }: MapPropsType) {
+export default function Map({ id, isEdit, markers, onSetCoordinates = () => {} }: MapPropsType) {
   useEffect(() => {
     let map: any;
     let poly: any;
@@ -58,7 +60,7 @@ export default function Map({ id, isEdit, onSetCoordinates = () => {} }: MapProp
             if (dataCoords) {
               onSetCoordinates([...dataCoords]);
             }
-           
+
             console.dir(poly.getPath().Be);
 
             // Add a new marker at the new plotted point on the polyline.
@@ -73,7 +75,12 @@ export default function Map({ id, isEdit, onSetCoordinates = () => {} }: MapProp
           isEdit && map.addListener('click', addMarker);
         }
       });
-  }, []);
+  }, [isEdit, markers]);
 
-  return <div id={id} className={styles.mapWrapper}></div>;
+  return (
+    <>
+      <div id={id} className={styles.mapWrapper}></div>
+     
+    </>
+  );
 }

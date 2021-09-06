@@ -27,9 +27,20 @@
   color: #fff;
 }
 
+.mapWrapper {
+  position: relative;
+}
+
 .distance {
   color: #fff;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 16px;
+}
+
+.removeBtn {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
 }

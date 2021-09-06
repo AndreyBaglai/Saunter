@@ -17,6 +17,7 @@ const rootForm = document.getElementById('root-form') as HTMLElement;
 export default function FormModal() {
   const [totalDistance, setTotalDistance] = useState(0);
   const [currentDirections, setCurrentDirection] = useState([]);
+  const [includeMarkers, setIncludeMarkers] = useState(false);
   const isOpen = useSelector((state: StoreModel) => state.form.isOpen);
   const dispatch = useDispatch();
 
@@ -52,6 +53,12 @@ export default function FormModal() {
     dispatch({ type: 'form/close', payload: false });
     setTotalDistance(0);
     setCurrentDirection([]);
+  };
+
+  const onRemoveMarkers = () => {
+    setTotalDistance(0);
+    setCurrentDirection([]);
+    setIncludeMarkers(!includeMarkers);
   };
 
   const onCreatePath = (formData: any) => {
@@ -150,8 +157,21 @@ export default function FormModal() {
                   </Form.Item>
                 </Form>
               </Col>
-              <Col span={11} offset={2}>
-                <Map id="mapForm" isEdit={true} onSetCoordinates={setCurrentDirection} />
+              <Col span={11} offset={2} className={styles.mapWrapper}>
+                <Map
+                  id="mapForm"
+                  isEdit={true}
+                  onSetCoordinates={setCurrentDirection}
+                  markers={includeMarkers}
+                />
+                <div className={styles.removeBtn}>
+                  <CustomButton
+                    text="Remove markers"
+                    size="middle"
+                    shape="round"
+                    handleFunc={onRemoveMarkers}
+                  />
+                </div>
               </Col>
             </Row>
           </Col>
