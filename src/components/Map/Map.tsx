@@ -67,14 +67,11 @@ export default function Map({
             // and it will automatically appear.
             path.push(e.latLng);
 
-            // console.log('coord', e.latLng);
             const dataCoords = poly.getPath().Be || [];
 
             if (dataCoords) {
               dispatch({ type: 'directions/add', payload: dataCoords });
             }
-
-            // console.dir(poly.getPath().Be);
 
             // Add a new marker at the new plotted point on the polyline.
             new google.maps.Marker({

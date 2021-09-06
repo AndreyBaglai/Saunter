@@ -18,13 +18,15 @@ export default function PathView() {
 
   const onRemovePath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
+    setPathInfo(null);
+
     dispatch({ type: 'paths/remove', payload: target.id });
     dispatch({ type: 'currentPath/remove', payload: null });
   };
 
   return (
     <Col span={11} offset={1} className={styles.pathView}>
-      {pathInfo && Object.keys(pathInfo).length ? (
+      {pathInfo && Object.keys(selectPath).length ? (
         <Card
           headStyle={{ color: '#fff', fontSize: '24px' }}
           className={styles.card}

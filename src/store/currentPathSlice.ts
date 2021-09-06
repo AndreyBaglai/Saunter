@@ -10,7 +10,7 @@ const currentPathSlice = createSlice({
       return {...action.payload};
     },
     remove(state, action) {
-      state = {...action.payload};
+      return action.payload;
     },
   },
 });
