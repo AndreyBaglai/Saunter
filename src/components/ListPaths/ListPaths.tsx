@@ -1,19 +1,19 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { List, Typography } from 'antd';
 import { EnvironmentTwoTone, RightOutlined, StarFilled, StarOutlined } from '@ant-design/icons';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { StoreModel } from '../../model/store-model';
+import { StoreModel } from 'model/store-model';
+import { PathModel } from 'model/path-model';
 
 import styles from './ListPaths.module.css';
-import { PathModel } from '../../model/path-model';
 
 type ListPathPropsType = {
   paths: PathModel[];
   isFiltered: boolean;
 };
 
-export default function ListPaths({ paths, isFiltered }: ListPathPropsType) {
+const ListPaths = ({ paths, isFiltered }: ListPathPropsType) => {
   const pathsState = useSelector((state: StoreModel) => state.paths);
   const dispatch = useDispatch();
 
@@ -57,9 +57,12 @@ export default function ListPaths({ paths, isFiltered }: ListPathPropsType) {
               </Typography.Paragraph>
             }
           />
+
           <Typography.Text className={styles.distance}>{`${path.distance} km`}</Typography.Text>
           <RightOutlined className={styles.leftArrow} />
         </List.Item>
       )}></List>
   );
-}
+};
+
+export default ListPaths;

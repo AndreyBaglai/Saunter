@@ -16,7 +16,7 @@ import styles from './FormModal.module.css';
 
 const rootFormContainer = document.getElementById('root-form') as HTMLElement;
 
-export default function FormModal() {
+const FormModal = () => {
   const [totalDistance, setTotalDistance] = useState(0);
   const [includeMarkers, setIncludeMarkers] = useState(false);
 
@@ -184,4 +184,6 @@ export default function FormModal() {
         rootFormContainer,
       )
     : ReactDOM.createPortal('', rootFormContainer);
-}
+};
+
+export default FormModal;
