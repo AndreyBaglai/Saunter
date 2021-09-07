@@ -38,7 +38,7 @@ const pathsSlice = createSlice({
       path = { ...path, favorite: true };
       return [path, ...newState];
     },
-
+    
     select(state, action) {
       state.forEach((path) => {
         path.id === action.payload ? (path.selected = true) : (path.selected = false);

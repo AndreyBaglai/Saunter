@@ -13,11 +13,12 @@ type ListPathPropsType = {
 };
 
 export default function ListPaths({ paths }: ListPathPropsType) {
+  const pathsState = useSelector((state: StoreModel) => state.paths);
   const dispatch = useDispatch();
 
   const onSelectedPath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    const path = paths.find((path: PathModel) => path.id === target.id);
+    const path = pathsState.find((path: PathModel) => path.id === target.id);
 
     dispatch({ type: 'paths/select', payload: target.id });
     dispatch({
@@ -29,7 +30,7 @@ export default function ListPaths({ paths }: ListPathPropsType) {
   return (
     <List
       className={styles.list}
-      dataSource={paths}
+      dataSource={pathsState}
       bordered={true}
       locale={{
         emptyText: <Typography.Text className={styles.emptyText}>No more paths</Typography.Text>,

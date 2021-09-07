@@ -7,8 +7,9 @@ const currentPathSlice = createSlice({
   initialState,
   reducers: {
     set(state, action) {
-      return {...action.payload};
+      return { ...action.payload };
     },
+
     remove(state, action) {
       return action.payload;
     },
