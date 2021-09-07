@@ -43,29 +43,28 @@ const Map = ({ id, isEdit, isSetMarkers }: MapPropsType) => {
 
         poly.setMap(map);
 
-        const addMarker = (e: google.maps.MapMouseEvent) => {
-          const path = poly.getPath();
-
-          // Because path is an MVCArray, we can simply append a new coordinate
-          // and it will automatically appear.
-          path.push(e.latLng);
-
-          const dataCoords = poly.getPath().Be || [];
-
-          if (dataCoords) {
-            dispatch({ type: 'directions/add', payload: [...dataCoords] });
-          }
-
-          // Add a new marker at the new plotted point on the polyline.
-          new google.maps.Marker({
-            position: e.latLng,
-            title: '#' + path.getLength(),
-            map,
-          });
-        };
-
         // Add a listener for the click event
-        isEdit && map.addListener('click', addMarker);
+        isEdit &&
+          map.addListener('click', (e: google.maps.MapMouseEvent) => {
+            const path = poly.getPath();
+
+            // Because path is an MVCArray, we can simply append a new coordinate
+            // and it will automatically appear.
+            path.push(e.latLng);
+
+            const dataCoords = poly.getPath().Be || [];
+
+            if (dataCoords) {
+              dispatch({ type: 'directions/add', payload: [...dataCoords] });
+            }
+
+            // Add a new marker at the new plotted point on the polyline.
+            new google.maps.Marker({
+              position: e.latLng,
+              title: '#' + path.getLength(),
+              map,
+            });
+          });
 
         // Set polyline on map
         !isEdit &&
