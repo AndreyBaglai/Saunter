@@ -24,15 +24,6 @@ const FormModal = () => {
   const directions = useSelector((state: StoreModel) => state.directions);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (directions.length > 1) {
-      const destination = directions[directions.length - 1];
-      const origin = directions[directions.length - 2];
-      countDistance(destination, origin);
-      console.log(totalDistance);
-    }
-  }, [directions]);
-
   const countDistance = async (destination: any, origin: any) => {
     const service = new google.maps.DistanceMatrixService();
 
@@ -45,13 +36,28 @@ const FormModal = () => {
       (response, status) => {
         if (status === 'OK') {
           setTotalDistance((state) => {
-            state += response.rows[0].elements[1].distance.value / 1000;
-            return Number(state.toFixed(3));
+            try {
+              state += response.rows[0].elements[1].distance.value / 1000;
+              return Number(state.toFixed(3));
+            } catch (err) {
+              console.log('Failed to build routes');
+              setIncludeMarkers(!includeMarkers);
+              dispatch({ type: 'directions/clean', payload: [] });
+              return 0;
+            }
           });
         }
       },
     );
   };
+
+  useEffect(() => {
+    if (directions.length > 1) {
+      const destination = directions[directions.length - 1];
+      const origin = directions[directions.length - 2];
+      countDistance(destination, origin);
+    }
+  }, [directions]);
 
   const onCloseForm = () => {
     setTotalDistance(0);
