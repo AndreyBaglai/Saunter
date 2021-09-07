@@ -11,6 +11,7 @@ const formSlice = createSlice({
     open(state, action) {
       return { ...state, isOpen: action.payload };
     },
+    
     close(state, action) {
       return { ...state, isOpen: action.payload };
     },

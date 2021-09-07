@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Col, Input, Row } from 'antd';
+import { useSelector } from 'react-redux';
 
 import ListPaths from '../ListPaths/ListPaths';
-
-import styles from './PathsListWrapper.module.css';
-import { StoreModel } from 'model/store-model';
-import { useSelector } from 'react-redux';
-import { PathModel } from 'model/path-model';
 import CustomButton from 'components/Button/CustomButton';
 
-export default function PathsListWrapper() {
+import { StoreModel } from 'model/store-model';
+import { PathModel } from 'model/path-model';
+
+import styles from './PathsListWrapper.module.css';
+
+const PathsListWrapper = () => {
   const pathsState = useSelector((state: StoreModel) => state.paths);
+
   const [paths, setPaths] = useState<PathModel[]>(pathsState);
   const [isFilter, setIsFilter] = useState(false);
 
@@ -26,7 +28,7 @@ export default function PathsListWrapper() {
   const onSetAllPathsToList = () => {
     setPaths(pathsState);
     setIsFilter(false);
-  }
+  };
 
   return (
     <Col span={12}>
@@ -39,12 +41,20 @@ export default function PathsListWrapper() {
             enterButton
           />
         </Col>
+        
         <Col span={5} offset={2}>
-          <CustomButton text="All paths" size="middle" shape="round" handleFunc={onSetAllPathsToList} />
+          <CustomButton
+            text="All paths"
+            size="middle"
+            shape="round"
+            handleFunc={onSetAllPathsToList}
+          />
         </Col>
       </Row>
 
-      <ListPaths paths={paths} isFiltered={isFilter}/>
+      <ListPaths paths={paths} isFiltered={isFilter} />
     </Col>
   );
-}
+};
+
+export default PathsListWrapper;

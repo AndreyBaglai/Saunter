@@ -4,7 +4,8 @@
   font-weight: 400;
 }
 
-.customBtn:hover, .customBtn:focus {
-  color:#9aed00;
-  border-color:#9aed00;
+.customBtn:hover,
+.customBtn:focus {
+  color: #9aed00;
+  border-color: #9aed00;
 }

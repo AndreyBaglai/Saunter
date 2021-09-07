@@ -5,10 +5,8 @@ import PathView from '../PathView/PathView';
 import PathsListWrapper from '../PathsListWrapper/PathsListWrapper';
 
 import styles from './Main.module.css';
-import { StoreModel } from '../../model/store-model';
-import { useDispatch, useSelector } from 'react-redux';
 
-export default function Main() {
+const Main = () => {
   return (
     <main className={styles.main}>
       <Row justify="space-around">
@@ -17,4 +15,6 @@ export default function Main() {
       </Row>
     </main>
   );
-}
+};
+
+export default Main;

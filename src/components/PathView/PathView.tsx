@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Button, Card, Typography } from 'antd';
+
 import Map from '../Map/Map';
 
-import styles from './PathView.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { StoreModel } from '../../model/store-model';
-import { PathModel } from '../../model/path-model';
+import { StoreModel } from 'model/store-model';
+import { PathModel } from 'model/path-model';
 
-export default function PathView() {
+import styles from './PathView.module.css';
+
+const PathView = () => {
   const [pathInfo, setPathInfo] = useState<PathModel | null>(null);
+
   const selectPath: any = useSelector((state: StoreModel) => state.currentPath);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setPathInfo(selectPath);
-  }, [pathInfo, selectPath])
+  }, [pathInfo, selectPath]);
 
   const onRemovePath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
@@ -40,6 +43,7 @@ export default function PathView() {
           style={{ width: '100%' }}>
           <p className={styles.fullDescription}>{pathInfo.description?.full}</p>
           <Map id="pathMap" isEdit={false} isSetMarkers={true} />
+
           <div className={styles.wrapperBtn}>
             <Button data-id={pathInfo.id} block type="link" onClick={onSetFavorite}>
               Add to favorite
@@ -54,4 +58,6 @@ export default function PathView() {
       )}
     </Col>
   );
-} 
+};
+
+export default PathView;

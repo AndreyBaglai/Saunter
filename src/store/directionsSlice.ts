@@ -9,6 +9,7 @@ const directionsSlice = createSlice({
     add(state, action) {
       return [...action.payload];
     },
+    
     clean(state, action) {
       return action.payload;
     },

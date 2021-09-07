@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PathModel } from '../model/path-model';
+import { PathModel } from 'model/path-model';
 
 const initialState = [
   {

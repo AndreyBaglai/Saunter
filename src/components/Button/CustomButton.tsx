@@ -13,15 +13,14 @@ type CustomButtonPropsType = {
   handleFunc: any;
 };
 
-export default function CustomButton({
+const CustomButton = ({
   text = '',
   size = 'middle',
   shape = 'round',
   icon,
   htmlType = 'button',
-  handleFunc = () => {}
-  
-}: CustomButtonPropsType) {
+  handleFunc = () => {},
+}: CustomButtonPropsType) => {
   return (
     <Button
       onClick={handleFunc}
@@ -34,4 +33,6 @@ export default function CustomButton({
       {text}
     </Button>
   );
-}
+};
+
+export default CustomButton;
