@@ -71,6 +71,7 @@ export default function FormModal() {
       },
       selected: false,
       distance: totalDistance,
+      favorite: false,
       directions,
     };
 

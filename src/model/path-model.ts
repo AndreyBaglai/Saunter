@@ -5,6 +5,7 @@ export type PathModel = {
     short: string;
     full: string;
   };
+  favorite: boolean;
   selected: boolean;
   distance: number;
   directions: any;

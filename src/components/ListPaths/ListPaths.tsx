@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Typography } from 'antd';
-import { EnvironmentTwoTone, RightOutlined } from '@ant-design/icons';
+import { EnvironmentTwoTone, RightOutlined, StarFilled, StarOutlined } from '@ant-design/icons';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreModel } from '../../model/store-model';
@@ -8,13 +8,16 @@ import { StoreModel } from '../../model/store-model';
 import styles from './ListPaths.module.css';
 import { PathModel } from '../../model/path-model';
 
-export default function ListPaths() {
-  const paths = useSelector((state: StoreModel) => state.paths);
+type ListPathPropsType = {
+  paths: PathModel[];
+};
+
+export default function ListPaths({ paths }: ListPathPropsType) {
   const dispatch = useDispatch();
 
   const onSelectedPath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    const path = paths.find((path) => path.id === target.id);
+    const path = paths.find((path: PathModel) => path.id === target.id);
 
     dispatch({ type: 'paths/select', payload: target.id });
     dispatch({
@@ -36,7 +39,16 @@ export default function ListPaths() {
           <List.Item.Meta
             className={styles.meta}
             avatar={<EnvironmentTwoTone className={styles.itemMarker} twoToneColor="true" />}
-            title={path.title}
+            title={
+              <>
+                {path.favorite ? (
+                  <StarFilled style={{ color: 'yellow' }} />
+                ) : (
+                  <StarOutlined style={{ color: 'yellow' }} />
+                )}
+                {path.title}
+              </>
+            }
             description={
               <Typography.Paragraph className={styles.description}>
                 {path.description.short}

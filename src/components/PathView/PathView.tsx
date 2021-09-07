@@ -20,8 +20,13 @@ export default function PathView() {
     const target = e.currentTarget as HTMLElement;
     setPathInfo(null);
 
-    dispatch({ type: 'paths/remove', payload: target.id });
+    dispatch({ type: 'paths/remove', payload: target.dataset.id });
     dispatch({ type: 'currentPath/remove', payload: null });
+  };
+
+  const onSetFavorite = (e: React.MouseEvent) => {
+    const target = e.currentTarget as HTMLElement;
+    dispatch({ type: 'paths/setFavorite', payload: target.dataset.id });
   };
 
   return (
@@ -36,10 +41,10 @@ export default function PathView() {
           <p>{pathInfo.description?.full}</p>
           <Map id="pathMap" isEdit={false} isSetMarkers={true} />
           <div className={styles.wrapperBtn}>
-            <Button block type="link">
+            <Button data-id={pathInfo.id} block type="link" onClick={onSetFavorite}>
               Add to favorite
             </Button>
-            <Button id={pathInfo.id} block type="link" danger onClick={onRemovePath}>
+            <Button data-id={pathInfo.id} block type="link" danger onClick={onRemovePath}>
               Remove
             </Button>
           </div>
