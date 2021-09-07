@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { Col, PageHeader, Row, Typography, Form, Input } from 'antd';
-
-import { CloseOutlined } from '@ant-design/icons';
-import CustomButton from '../Button/CustomButton';
-
-import styles from './FormModal.module.css';
-import { StoreModel } from '../../model/store-model';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import { PathModel } from '../../model/path-model';
+import { CloseOutlined } from '@ant-design/icons';
+import { Col, PageHeader, Row, Typography, Form, Input } from 'antd';
+
+import CustomButton from '../Button/CustomButton';
 import Map from '../Map/Map';
 
-const rootForm = document.getElementById('root-form') as HTMLElement;
+import { StoreModel } from 'model/store-model';
+import { PathModel } from 'model/path-model';
+import { FormDataModel } from 'model/formData-model';
+
+import styles from './FormModal.module.css';
+
+const rootFormContainer = document.getElementById('root-form') as HTMLElement;
 
 export default function FormModal() {
   const [totalDistance, setTotalDistance] = useState(0);
   const [includeMarkers, setIncludeMarkers] = useState(false);
+
   const isOpen = useSelector((state: StoreModel) => state.form.isOpen);
   const directions = useSelector((state: StoreModel) => state.directions);
   const dispatch = useDispatch();
@@ -50,18 +53,18 @@ export default function FormModal() {
   };
 
   const onCloseForm = () => {
-    dispatch({ type: 'form/close', payload: false });
     setTotalDistance(0);
+    dispatch({ type: 'form/close', payload: false });
     dispatch({ type: 'directions/clean', payload: [] });
   };
 
   const onRemoveMarkers = () => {
     setTotalDistance(0);
-    dispatch({ type: 'directions/clean', payload: [] });
     setIncludeMarkers(!includeMarkers);
+    dispatch({ type: 'directions/clean', payload: [] });
   };
 
-  const onCreatePath = (formData: any) => {
+  const onCreatePath = (formData: FormDataModel) => {
     if (totalDistance === 0) return;
 
     const newPath: PathModel = {
@@ -77,9 +80,9 @@ export default function FormModal() {
       directions,
     };
 
+    setTotalDistance(0);
     dispatch({ type: 'paths/add', payload: newPath });
     dispatch({ type: 'form/close', payload: false });
-    setTotalDistance(0);
     dispatch({ type: 'directions/clean', payload: [] });
   };
 
@@ -101,6 +104,7 @@ export default function FormModal() {
                 />,
               ]}
             />
+
             <Row className={styles.modal}>
               <Col span={11}>
                 <Form
@@ -133,6 +137,7 @@ export default function FormModal() {
                     label="Short description">
                     <Input.TextArea />
                   </Form.Item>
+
                   <Form.Item
                     className={styles.formField}
                     name="fullText"
@@ -145,6 +150,7 @@ export default function FormModal() {
                     ]}>
                     <Input.TextArea />
                   </Form.Item>
+
                   <Form.Item>
                     <Typography.Text
                       className={styles.distance}>{`Length: ${totalDistance} km`}</Typography.Text>
@@ -160,13 +166,9 @@ export default function FormModal() {
                   </Form.Item>
                 </Form>
               </Col>
+
               <Col span={11} offset={2} className={styles.mapWrapper}>
-                <Map
-                  id="mapForm"
-                  isEdit={true}
-                  //onSetCoordinates={setCurrentDirection}
-                  isSetMarkers={includeMarkers}
-                />
+                <Map id="mapForm" isEdit={true} isSetMarkers={includeMarkers} />
                 <div className={styles.removeBtn}>
                   <CustomButton
                     text="Remove markers"
@@ -179,7 +181,7 @@ export default function FormModal() {
             </Row>
           </Col>
         </Row>,
-        rootForm,
+        rootFormContainer,
       )
-    : ReactDOM.createPortal('', rootForm);
+    : ReactDOM.createPortal('', rootFormContainer);
 }
