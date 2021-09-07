@@ -13,8 +13,8 @@ const initialState = [
     selected: false,
     distance: 35.134,
     directions: [
-      { lat: () => 48.453, lng: () => 35.9845 },
-      { lat: () => 48.443, lng: () => 34.9845 },
+      { lat: () => 48.4499013737848, lng: () => 34.98049320537708 },
+      { lat: () => 48.448591982505036, lng: () => 34.98019279796741 },
     ],
   },
 ];
@@ -38,7 +38,7 @@ const pathsSlice = createSlice({
       path = { ...path, favorite: true };
       return [path, ...newState];
     },
-    
+
     select(state, action) {
       state.forEach((path) => {
         path.id === action.payload ? (path.selected = true) : (path.selected = false);

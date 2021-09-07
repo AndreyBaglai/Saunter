@@ -30,3 +30,7 @@
   margin: 30px auto 0;
   text-align: center;
 }
+
+.fullDescription {
+  word-wrap: break-word;
+}

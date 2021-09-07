@@ -38,7 +38,7 @@ export default function PathView() {
           title={pathInfo.title}
           extra={<h5 className={styles.distance}>{pathInfo.distance} km</h5>}
           style={{ width: '100%' }}>
-          <p>{pathInfo.description?.full}</p>
+          <p className={styles.fullDescription}>{pathInfo.description?.full}</p>
           <Map id="pathMap" isEdit={false} isSetMarkers={true} />
           <div className={styles.wrapperBtn}>
             <Button data-id={pathInfo.id} block type="link" onClick={onSetFavorite}>

@@ -10,6 +10,6 @@ export default configureStore({
     paths: pathsReducer,
     form: formReducer,
     currentPath: currentPathReducer,
-    directions: directionsReducer
-  }
+    directions: directionsReducer,
+  },
 });

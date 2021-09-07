@@ -62,6 +62,8 @@ export default function FormModal() {
   };
 
   const onCreatePath = (formData: any) => {
+    if (totalDistance === 0) return;
+
     const newPath: PathModel = {
       id: nanoid(),
       title: formData.title,

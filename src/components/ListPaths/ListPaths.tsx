@@ -10,9 +10,10 @@ import { PathModel } from '../../model/path-model';
 
 type ListPathPropsType = {
   paths: PathModel[];
+  isFiltered: boolean;
 };
 
-export default function ListPaths({ paths }: ListPathPropsType) {
+export default function ListPaths({ paths, isFiltered }: ListPathPropsType) {
   const pathsState = useSelector((state: StoreModel) => state.paths);
   const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ export default function ListPaths({ paths }: ListPathPropsType) {
   return (
     <List
       className={styles.list}
-      dataSource={pathsState}
+      dataSource={isFiltered ? paths : pathsState}
       bordered={true}
       locale={{
         emptyText: <Typography.Text className={styles.emptyText}>No more paths</Typography.Text>,
