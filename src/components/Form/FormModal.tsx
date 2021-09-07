@@ -29,6 +29,7 @@ const FormModal = () => {
       const destination = directions[directions.length - 1];
       const origin = directions[directions.length - 2];
       countDistance(destination, origin);
+      console.log(totalDistance);
     }
   }, [directions]);
 

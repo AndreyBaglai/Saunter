@@ -41,7 +41,7 @@ const PathsListWrapper = () => {
             enterButton
           />
         </Col>
-        
+
         <Col span={5} offset={2}>
           <CustomButton
             text="All paths"

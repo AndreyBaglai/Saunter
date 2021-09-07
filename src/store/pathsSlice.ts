@@ -11,7 +11,7 @@ const initialState = [
     },
     favorite: false,
     selected: false,
-    distance: 35.134,
+    distance: 0.534,
     directions: [
       { lat: () => 48.4499013737848, lng: () => 34.98049320537708 },
       { lat: () => 48.448591982505036, lng: () => 34.98019279796741 },
