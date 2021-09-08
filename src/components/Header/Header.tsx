@@ -2,8 +2,8 @@ import React from 'react';
 import { PageHeader } from 'antd';
 import { useDispatch } from 'react-redux';
 
-import Logo from '../Logo/Logo';
-import CustomButton from '../Button/CustomButton';
+import Logo from 'components/Logo/Logo';
+import CustomButton from 'components/Button/CustomButton';
 
 import styles from './Header.module.css';
 

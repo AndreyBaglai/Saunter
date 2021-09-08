@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row } from 'antd';
 
-import PathView from '../PathView/PathView';
-import PathsListWrapper from '../PathsListWrapper/PathsListWrapper';
+import PathView from 'components/PathView/PathView';
+import PathsListWrapper from 'components/PathsListWrapper/PathsListWrapper';
 
 import styles from './Main.module.css';
 

@@ -5,8 +5,8 @@ import { nanoid } from '@reduxjs/toolkit';
 import { CloseOutlined } from '@ant-design/icons';
 import { Col, PageHeader, Row, Typography, Form, Input } from 'antd';
 
-import CustomButton from '../Button/CustomButton';
-import Map from '../Map/Map';
+import CustomButton from 'components/Button/CustomButton';
+import Map from 'components/Map/Map';
 
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';

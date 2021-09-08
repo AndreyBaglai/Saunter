@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Col, Input, Row } from 'antd';
 import { useSelector } from 'react-redux';
 
-import ListPaths from '../ListPaths/ListPaths';
+import ListPaths from 'components/ListPaths/ListPaths';
 import CustomButton from 'components/Button/CustomButton';
 
 import { StoreModel } from 'model/store-model';

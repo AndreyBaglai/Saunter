@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Col, Button, Card, Typography } from 'antd';
 
-import Map from '../Map/Map';
+import Map from 'components/Map/Map';
 
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
