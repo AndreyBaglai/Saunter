@@ -17,6 +17,8 @@ const PathsListWrapper = () => {
   const [isFilter, setIsFilter] = useState(false);
 
   const onFilterPaths = (value: string) => {
+    if (value === '') return;
+    
     const filterPaths = pathsState.filter((path: PathModel) =>
       path.title.toLowerCase().includes(value.toLowerCase()),
     );
