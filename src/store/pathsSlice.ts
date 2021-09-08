@@ -39,6 +39,14 @@ const pathsSlice = createSlice({
       return [path, ...newState];
     },
 
+    removeFavorite(state, action) {
+      let path = state.find((item) => item.id === action.payload) as PathModel;
+      const newState = state.filter((path) => path.id !== action.payload);
+
+      path = { ...path, favorite: false };
+      return [...newState, path];
+    },
+
     select(state, action) {
       state.forEach((path) => {
         path.id === action.payload ? (path.selected = true) : (path.selected = false);
