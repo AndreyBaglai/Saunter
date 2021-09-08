@@ -53,9 +53,10 @@ const Map = ({ id, isEdit, isSetMarkers }: MapPropsType) => {
             path.push(e.latLng);
 
             const dataCoords = poly.getPath().Be || [];
+            const coords = dataCoords.map((coord: any) => ({ lat: coord.lat(), lng: coord.lng() }));
 
             if (dataCoords) {
-              dispatch({ type: 'directions/add', payload: [...dataCoords] });
+              dispatch({ type: 'directions/add', payload: coords });
             }
 
             // Add a new marker at the new plotted point on the polyline.
@@ -72,8 +73,8 @@ const Map = ({ id, isEdit, isSetMarkers }: MapPropsType) => {
           (poly = new google.maps.Polyline({
             path: [
               ...pathInfo?.directions.map((coord: any) => ({
-                lat: coord.lat(),
-                lng: coord.lng(),
+                lat: coord.lat,
+                lng: coord.lng,
               })),
             ],
             strokeColor: '#9aed00',
@@ -89,8 +90,8 @@ const Map = ({ id, isEdit, isSetMarkers }: MapPropsType) => {
           pathInfo.directions.forEach((markerCoords: any) => {
             new google.maps.Marker({
               position: {
-                lat: markerCoords.lat(),
-                lng: markerCoords.lng(),
+                lat: markerCoords.lat,
+                lng: markerCoords.lng,
               },
               map,
             });

@@ -6,6 +6,7 @@ import Map from 'components/Map/Map';
 
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
+import { removePathFromLS, updateFavoritePathByLS } from 'services/localStorage';
 
 import styles from './PathView.module.css';
 
@@ -22,21 +23,30 @@ const PathView = () => {
 
   const onRemovePath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    setPathInfo(null);
+    const id = target.dataset.id as string;
 
-    dispatch({ type: 'paths/remove', payload: target.dataset.id });
+    setPathInfo(null);
+    removePathFromLS(id);
+
+    dispatch({ type: 'paths/remove', payload: id });
     dispatch({ type: 'currentPath/remove', payload: null });
   };
 
   const onSetFavorite = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    setIsUpdateBtn(state => !state);
-    dispatch({ type: 'paths/setFavorite', payload: target.dataset.id });
+    const id =  target.dataset.id as string;
+    
+    setIsUpdateBtn((state) => !state);
+    updateFavoritePathByLS(id);
+    dispatch({ type: 'paths/setFavorite', payload: id });
   };
 
   const onRemoveFavorite = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    setIsUpdateBtn(state => !state);
+    const id =  target.dataset.id as string;
+
+    updateFavoritePathByLS(id);
+    setIsUpdateBtn((state) => !state);
     dispatch({ type: 'paths/removeFavorite', payload: target.dataset.id });
   };
 
@@ -50,6 +60,7 @@ const PathView = () => {
           extra={<h5 className={styles.distance}>{pathInfo.distance} km</h5>}
           style={{ width: '100%' }}>
           <p className={styles.fullDescription}>{pathInfo.description?.full}</p>
+          
           <Map id="pathMap" isEdit={false} isSetMarkers={true} />
 
           <div className={styles.wrapperBtn}>

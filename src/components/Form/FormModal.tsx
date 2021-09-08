@@ -7,6 +7,7 @@ import { Col, PageHeader, Row, Typography, Form, Input, message } from 'antd';
 
 import CustomButton from 'components/Button/CustomButton';
 import Map from 'components/Map/Map';
+import { setPathsToLS } from 'services/localStorage';
 
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
@@ -21,6 +22,7 @@ const FormModal = () => {
   const [includeMarkers, setIncludeMarkers] = useState(false);
 
   const isOpen = useSelector((state: StoreModel) => state.form.isOpen);
+  const allPaths = useSelector((state: StoreModel) => state.paths);
   const directions = useSelector((state: StoreModel) => state.directions);
   const dispatch = useDispatch();
 
@@ -29,8 +31,8 @@ const FormModal = () => {
 
     service.getDistanceMatrix(
       {
-        origins: [{ lat: origin.lat(), lng: origin.lng() }, 'Start'],
-        destinations: ['End', { lat: destination.lat(), lng: destination.lng() }],
+        origins: [{ lat: origin.lat, lng: origin.lng }, 'Start'],
+        destinations: ['End', { lat: destination.lat, lng: destination.lng }],
         travelMode: google.maps.TravelMode.DRIVING,
       },
       (response, status) => {
@@ -94,6 +96,8 @@ const FormModal = () => {
     dispatch({ type: 'paths/add', payload: newPath });
     dispatch({ type: 'form/close', payload: false });
     dispatch({ type: 'directions/clean', payload: [] });
+
+    setPathsToLS([...allPaths, newPath]);
   };
 
   return isOpen
@@ -144,8 +148,8 @@ const FormModal = () => {
                       },
                       {
                         max: 160,
-                        message: 'Text must be not more 160 symbols'
-                      }
+                        message: 'Text must be not more 160 symbols',
+                      },
                     ]}
                     name="shortText"
                     label="Short description">

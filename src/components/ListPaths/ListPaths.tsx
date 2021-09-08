@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { List, Typography } from 'antd';
 import { EnvironmentTwoTone, RightOutlined, StarFilled, StarOutlined } from '@ant-design/icons';
 
+import { getPathsFromLS } from 'services/localStorage';
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
 
@@ -14,8 +15,15 @@ type ListPathPropsType = {
 };
 
 const ListPaths = ({ paths, isFiltered }: ListPathPropsType) => {
-  const pathsState = useSelector((state: StoreModel) => state.paths);
+  let pathsState = useSelector((state: StoreModel) => state.paths);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const pathsFromLS = getPathsFromLS();
+    if (pathsFromLS.length > 0) {
+      dispatch({type: 'paths/updateFromLS', payload: pathsFromLS});
+    }
+  }, []);
 
   const onSelectedPath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
@@ -31,7 +39,7 @@ const ListPaths = ({ paths, isFiltered }: ListPathPropsType) => {
   return (
     <List
       className={styles.list}
-      dataSource={isFiltered ? paths : pathsState}
+      dataSource={pathsState}
       bordered={true}
       locale={{
         emptyText: <Typography.Text className={styles.emptyText}>No more paths</Typography.Text>,

@@ -13,8 +13,8 @@ const initialState = [
     selected: false,
     distance: 0.534,
     directions: [
-      { lat: () => 48.4499013737848, lng: () => 34.98049320537708 },
-      { lat: () => 48.448591982505036, lng: () => 34.98019279796741 },
+      { lat: 48.4499013737848, lng: 34.98049320537708 },
+      { lat: 48.448591982505036, lng: 34.98019279796741 },
     ],
   },
 ];
@@ -25,6 +25,10 @@ const pathsSlice = createSlice({
   reducers: {
     add(state, action) {
       return [...state, action.payload];
+    },
+
+    updateFromLS(state, action) {
+      return [...action.payload];
     },
 
     remove(state, action) {
