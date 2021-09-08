@@ -36,7 +36,7 @@ const PathView = () => {
     const target = e.currentTarget as HTMLElement;
     const id =  target.dataset.id as string;
     
-    setIsUpdateBtn((state) => !state);
+    setIsUpdateBtn(true);
     updateFavoritePathByLS(id);
     dispatch({ type: 'paths/setFavorite', payload: id });
   };
@@ -46,7 +46,7 @@ const PathView = () => {
     const id =  target.dataset.id as string;
 
     updateFavoritePathByLS(id);
-    setIsUpdateBtn((state) => !state);
+    setIsUpdateBtn(false);
     dispatch({ type: 'paths/removeFavorite', payload: target.dataset.id });
   };
 
@@ -60,11 +60,11 @@ const PathView = () => {
           extra={<h5 className={styles.distance}>{pathInfo.distance} km</h5>}
           style={{ width: '100%' }}>
           <p className={styles.fullDescription}>{pathInfo.description?.full}</p>
-          
+
           <Map id="pathMap" isEdit={false} isSetMarkers={true} />
 
           <div className={styles.wrapperBtn}>
-            {!pathInfo.favorite && !isUpdateBtn ? (
+            {!isUpdateBtn ? (
               <Button data-id={pathInfo.id} block type="link" onClick={onSetFavorite}>
                 Add to favorite
               </Button>

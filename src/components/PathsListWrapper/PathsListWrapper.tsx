@@ -16,7 +16,9 @@ const PathsListWrapper = () => {
   const [paths, setPaths] = useState<PathModel[]>(pathsState);
   const [isFilter, setIsFilter] = useState(false);
 
-  const onFilterPaths = (value: string) => {
+  const onFilterPaths = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    console.log(value);
     if (value === '') return;
 
     const filterPaths = pathsState.filter((path: PathModel) =>
@@ -27,9 +29,9 @@ const PathsListWrapper = () => {
     setIsFilter(true);
   };
 
-  const onSetAllPathsToList = () => {
-    setPaths(pathsState);
-    setIsFilter(false);
+  const onClearSearchField = () => {
+    // setPaths(pathsState);
+    // setIsFilter(false);
   };
 
   return (
@@ -39,7 +41,8 @@ const PathsListWrapper = () => {
           <Input
             className={styles.inputSearch}
             placeholder="Input search text"
-            suffix={<CloseCircleFilled className={styles.icon} />}
+            onChange={onFilterPaths}
+            suffix={<CloseCircleFilled onClick={onClearSearchField} className={styles.icon} />}
           />
         </Col>
       </Row>
