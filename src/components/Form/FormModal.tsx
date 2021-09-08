@@ -106,7 +106,7 @@ const FormModal = () => {
           <Col span={16} offset={4}>
             <PageHeader
               className={styles.modalTitle}
-              title="Add new path"
+              title={<Typography.Text className={styles.title}>Add new path</Typography.Text>}
               extra={[
                 <CustomButton
                   handleFunc={onCloseForm}

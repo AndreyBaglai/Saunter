@@ -6,6 +6,10 @@
   min-width: 100vw;
 }
 
+.title {
+  color: #9aed00;
+}
+
 .modal {
   background: rgb(87, 87, 87);
   padding: 24px;
@@ -15,16 +19,12 @@
   background: rgb(87, 87, 87);
 }
 
-.modalTitle span {
-  color: #fff;
-}
-
 .form {
   text-align: center;
 }
 
 .formField label {
-  color: #fff;
+  color: #9aed00;
 }
 
 .mapWrapper {
