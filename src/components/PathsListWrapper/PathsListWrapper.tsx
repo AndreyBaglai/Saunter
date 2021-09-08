@@ -3,7 +3,7 @@ import { Col, Input, Row } from 'antd';
 import { useSelector } from 'react-redux';
 
 import ListPaths from 'components/ListPaths/ListPaths';
-import CustomButton from 'components/Button/CustomButton';
+import { CloseCircleFilled } from '@ant-design/icons';
 
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
@@ -18,7 +18,7 @@ const PathsListWrapper = () => {
 
   const onFilterPaths = (value: string) => {
     if (value === '') return;
-    
+
     const filterPaths = pathsState.filter((path: PathModel) =>
       path.title.toLowerCase().includes(value.toLowerCase()),
     );
@@ -35,21 +35,11 @@ const PathsListWrapper = () => {
   return (
     <Col span={12}>
       <Row>
-        <Col span={17}>
-          <Input.Search
+        <Col span={24}>
+          <Input
             className={styles.inputSearch}
             placeholder="Input search text"
-            onSearch={onFilterPaths}
-            enterButton
-          />
-        </Col>
-
-        <Col span={5} offset={2}>
-          <CustomButton
-            text="All paths"
-            size="middle"
-            shape="round"
-            handleFunc={onSetAllPathsToList}
+            suffix={<CloseCircleFilled className={styles.icon} />}
           />
         </Col>
       </Row>

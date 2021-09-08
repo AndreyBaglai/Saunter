@@ -1,29 +1,35 @@
 .inputSearch {
   margin-bottom: 30px;
-}
-
-.inputSearch input {
   border-color: #9aed00;
-  background: transparent;
+  background: rgb(61, 60, 60);
   color: #fff;
   border-radius: 10px;
 }
 
-.inputSearch button {
-  border-color: #9aed00;
-  background: #9aed00;
-  color: #000;
-}
-
-.inputSearch button:hover,
-.inputSearch button:focus {
+.inputSearch input {
   border-color: #9aed00;
   background: rgb(61, 60, 60);
   color: #fff;
+  border-radius: 10px;
 }
 
-.inputSearch input:hover,
-.inputSearch input:focus {
+.inputSearch:hover,
+.inputSearch:focus {
+  border-color: #9aed00;
+  background: rgb(61, 60, 60);
+  color: #fff;
   border-color: #9aed00 !important;
   outline: #9aed00 !important;
+}
+
+.icon {
+  background-color: transparent;
+  color: #9aed00;
+  cursor: pointer;
+  font-size: 24px;
+  transition: all 0.5s ease;
+}
+
+.icon:hover {
+  color: #7ab50e;
 }
