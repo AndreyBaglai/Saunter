@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { CloseOutlined } from '@ant-design/icons';
-import { Col, PageHeader, Row, Typography, Form, Input } from 'antd';
+import { Col, PageHeader, Row, Typography, Form, Input, message } from 'antd';
 
 import CustomButton from 'components/Button/CustomButton';
 import Map from 'components/Map/Map';
@@ -72,7 +72,10 @@ const FormModal = () => {
   };
 
   const onCreatePath = (formData: FormDataModel) => {
-    if (totalDistance === 0) return;
+    if (totalDistance === 0 || directions.length < 2) {
+      message.error('Please, add minimum two markers on map');
+      return;
+    }
 
     const newPath: PathModel = {
       id: nanoid(),
@@ -139,6 +142,10 @@ const FormModal = () => {
                         required: true,
                         message: 'Please, input short description path',
                       },
+                      {
+                        max: 160,
+                        message: 'Text must be not more 160 symbols'
+                      }
                     ]}
                     name="shortText"
                     label="Short description">
