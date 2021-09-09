@@ -1,5 +1,9 @@
 $bg-color: rgb(61, 60, 60);
 
+body {
+  overflow-x: hidden;
+}
+
 .app {
   background-color: $bg-color;
   color: #fff;

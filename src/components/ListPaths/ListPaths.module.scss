@@ -1,6 +1,8 @@
 .list {
   border-radius: 10px;
   border: 1px solid #9aed00;
+  //max-height: 300px;
+  //overflow-y: scroll;
 }
 
 .listItem {
@@ -8,6 +10,7 @@
   color: #fff;
   cursor: pointer;
   transition: all 0.5s ease;
+  margin-bottom: 10px;
 }
 
 .emptyText {

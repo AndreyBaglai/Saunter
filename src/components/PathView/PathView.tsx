@@ -52,7 +52,7 @@ const PathView = () => {
   };
 
   return (
-    <Col span={11} offset={1} className={`col-6 col-sm-12 offset-xs-2 ${styles.pathView}`}>
+    <Col className={`col-md-5 offset-md-1 col-sm-12 ${styles.pathView}`}>
       {pathInfo && Object.keys(selectPath).length ? (
         <Card
           headStyle={{ color: '#fff', fontSize: '24px' }}

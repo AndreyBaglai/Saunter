@@ -102,7 +102,7 @@ const FormModal = () => {
   return isOpen
     ? ReactDOM.createPortal(
         <Row className={`container ${styles.modalWrapper}`}>
-          <Col span={16} offset={4}>
+          <Col className="row col-md-8 col-xs-10 col-sm-10 offset-sm-1 offset-md-2 offset-xs-2">
             <PageHeader
               className={styles.modalTitle}
               title={<Typography.Text className={styles.title}>Add new path</Typography.Text>}
@@ -119,7 +119,7 @@ const FormModal = () => {
             />
 
             <Row className={`container ${styles.modal}`}>
-              <Col span={11}>
+              <Col className="col-md-6 col-sm-12 col-xs-12">
                 <Form
                   className={`${styles.form}`}
                   layout="vertical"
@@ -192,7 +192,7 @@ const FormModal = () => {
                 </Form>
               </Col>
 
-              <Col span={11} offset={2} className={styles.mapWrapper}>
+              <Col className={`col-md-5 offset-md-1 col-sm-12 col-xs-12 ${styles.mapWrapper}`}>
                 <Map id="mapForm" isEdit={true} isSetMarkers={includeMarkers} />
                 <div className={styles.removeBtn}>
                   <CustomButton
