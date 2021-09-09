@@ -38,6 +38,7 @@ const PathsListWrapper = () => {
       onClearSearchField();
     }
 
+    // fields by sort
     const filterPaths = pathsState.filter((path: PathModel) =>
       path.title.toLowerCase().includes(value.toLowerCase()),
     );

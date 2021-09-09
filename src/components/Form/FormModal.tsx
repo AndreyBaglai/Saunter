@@ -134,6 +134,10 @@ const FormModal = () => {
                         required: true,
                         message: 'Please, input title path',
                       },
+                      {
+                        max: 15,
+                        message: 'Title must be not more 15 symbols',
+                      },
                     ]}>
                     <Input />
                   </Form.Item>
@@ -146,8 +150,8 @@ const FormModal = () => {
                         message: 'Please, input short description path',
                       },
                       {
-                        max: 160,
-                        message: 'Text must be not more 160 symbols',
+                        max: 40,
+                        message: 'Text must be not more 40 symbols',
                       },
                     ]}
                     name="shortText"
@@ -163,6 +167,10 @@ const FormModal = () => {
                       {
                         required: true,
                         message: 'Please, input full description path',
+                      },
+                      {
+                        max: 160,
+                        message: 'Text must be not more 160 symbols',
                       },
                     ]}>
                     <Input.TextArea />

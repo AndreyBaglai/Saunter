@@ -47,7 +47,7 @@ const ListPaths = ({ paths }: ListPathPropsType) => {
   return (
     <List
       className={styles.list}
-      dataSource={statePaths}
+      dataSource={paths}
       bordered={true}
       locale={{
         emptyText: <Typography.Text className={styles.emptyText}>No more paths</Typography.Text>,

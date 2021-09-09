@@ -20,7 +20,6 @@ const PathView = () => {
 
   useEffect(() => {
     setPathInfo(selectPath);
-    setIsUpdateBtn(selectPath.favorite);
   }, [pathInfo, selectPath, isUpdateBtn]);
 
   const onRemovePath = (e: React.MouseEvent) => {
