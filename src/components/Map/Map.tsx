@@ -4,7 +4,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 
 import { StoreModel } from 'model/store-model';
 
-import styles from './Map.module.css';
+import styles from './Map.module.scss';
 
 type MapPropsType = {
   id: string;

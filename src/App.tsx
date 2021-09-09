@@ -5,7 +5,7 @@ import Header from 'components/Header/Header';
 import Main from 'components/Main/Main';
 import FormModal from 'components/Form/FormModal';
 
-import styles from 'App.module.css';
+import styles from 'App.module.scss';
 
 const App = () => {
   return (

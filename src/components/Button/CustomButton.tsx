@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
-import styles from './CustomButton.module.css';
+import styles from './CustomButton.module.scss';
 
 type CustomButtonPropsType = {
   text: string;

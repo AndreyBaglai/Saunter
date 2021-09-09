@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { List, Typography } from 'antd';
 import { EnvironmentTwoTone, RightOutlined, StarFilled, StarOutlined } from '@ant-design/icons';
 
-import { getPathsFromLS, updateFavoritePathByLS } from 'services/localStorage';
+import { updateFavoritePathByLS } from 'services/localStorage';
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
 
-import styles from './ListPaths.module.css';
+import styles from './ListPaths.module.scss';
 
 type ListPathPropsType = {
   paths: PathModel[];
@@ -27,18 +27,18 @@ const ListPaths = ({ paths }: ListPathPropsType) => {
       payload: path,
     });
   };
-  
+
   const onSetFavorite = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    const id =  target.dataset.id as string;
-    
+    const id = target.dataset.id as string;
+
     updateFavoritePathByLS(id);
     dispatch({ type: 'paths/setFavorite', payload: id });
   };
 
   const onRemoveFavorite = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    const id =  target.dataset.id as string;
+    const id = target.dataset.id as string;
 
     updateFavoritePathByLS(id);
     dispatch({ type: 'paths/removeFavorite', payload: target.dataset.id });
@@ -69,9 +69,17 @@ const ListPaths = ({ paths }: ListPathPropsType) => {
             title={
               <>
                 {path.favorite ? (
-                  <StarFilled  data-id={path.id} style={{ color: 'yellow' }} onClick={onRemoveFavorite} />
+                  <StarFilled
+                    data-id={path.id}
+                    style={{ color: 'yellow' }}
+                    onClick={onRemoveFavorite}
+                  />
                 ) : (
-                  <StarOutlined  data-id={path.id} style={{ color: 'yellow' }} onClick={onSetFavorite} />
+                  <StarOutlined
+                    data-id={path.id}
+                    style={{ color: 'yellow' }}
+                    onClick={onSetFavorite}
+                  />
                 )}
                 <Typography.Text className={styles.itemTitle}>{path.title}</Typography.Text>
               </>

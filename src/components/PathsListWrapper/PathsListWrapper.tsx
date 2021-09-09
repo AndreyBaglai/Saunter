@@ -8,7 +8,7 @@ import { CloseCircleFilled } from '@ant-design/icons';
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
 
-import styles from './PathsListWrapper.module.css';
+import styles from './PathsListWrapper.module.scss';
 import { getPathsFromLS } from 'services/localStorage';
 
 const PathsListWrapper = () => {

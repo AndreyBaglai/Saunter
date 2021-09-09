@@ -8,7 +8,7 @@ import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
 import { removePathFromLS, updateFavoritePathByLS } from 'services/localStorage';
 
-import styles from './PathView.module.css';
+import styles from './PathView.module.scss';
 
 const PathView = () => {
   const selectPath: any = useSelector((state: StoreModel) => state.currentPath);

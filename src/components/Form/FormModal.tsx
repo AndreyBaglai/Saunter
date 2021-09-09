@@ -13,7 +13,7 @@ import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
 import { FormDataModel } from 'model/formData-model';
 
-import styles from './FormModal.module.css';
+import styles from './FormModal.module.scss';
 
 const rootFormContainer = document.getElementById('root-form') as HTMLElement;
 

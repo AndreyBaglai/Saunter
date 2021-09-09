@@ -4,7 +4,7 @@ import { Row } from 'antd';
 import PathView from 'components/PathView/PathView';
 import PathsListWrapper from 'components/PathsListWrapper/PathsListWrapper';
 
-import styles from './Main.module.css';
+import styles from './Main.module.scss';
 
 const Main = () => {
   return (

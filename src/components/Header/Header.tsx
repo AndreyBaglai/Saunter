@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import Logo from 'components/Logo/Logo';
 import CustomButton from 'components/Button/CustomButton';
 
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
