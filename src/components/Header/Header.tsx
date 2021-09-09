@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <PageHeader
-      className={styles.header}
+      className={`row ${styles.header}`}
       title={<Logo />}
       extra={[
         <CustomButton

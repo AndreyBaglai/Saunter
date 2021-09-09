@@ -8,7 +8,7 @@ import styles from './Main.module.css';
 
 const Main = () => {
   return (
-    <main className={styles.main}>
+    <main className={`row ${styles.main}`}>
       <Row justify="space-around">
         <PathsListWrapper />
         <PathView />

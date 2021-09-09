@@ -9,6 +9,11 @@
   background: transparent;
   color: #fff;
   border: none;
+  width: 100%;
+}
+
+.card h5 {
+  margin-bottom: 0;
 }
 
 .distance {

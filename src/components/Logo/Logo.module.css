@@ -8,3 +8,8 @@
   font-size: 28px;
   margin-right: 10px;
 }
+
+.logoWrapper {
+  display: flex;
+  align-items: flex-end;
+}

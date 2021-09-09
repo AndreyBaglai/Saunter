@@ -6,7 +6,7 @@ import styles from './Logo.module.css';
 
 const Logo = () => {
   return (
-    <div>
+    <div className={styles.logoWrapper}>
       <AppstoreTwoTone twoToneColor="#9aed00" className={styles.icon} />
       <Typography.Text className={styles.text} strong={true}>
         Saunter

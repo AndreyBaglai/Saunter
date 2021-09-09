@@ -52,7 +52,6 @@ const FormModal = () => {
       },
     );
   };
-
   useEffect(() => {
     if (directions.length > 1) {
       const destination = directions[directions.length - 1];
@@ -102,7 +101,7 @@ const FormModal = () => {
 
   return isOpen
     ? ReactDOM.createPortal(
-        <Row className={styles.modalWrapper}>
+        <Row className={`container ${styles.modalWrapper}`}>
           <Col span={16} offset={4}>
             <PageHeader
               className={styles.modalTitle}
@@ -119,10 +118,10 @@ const FormModal = () => {
               ]}
             />
 
-            <Row className={styles.modal}>
+            <Row className={`container ${styles.modal}`}>
               <Col span={11}>
                 <Form
-                  className={styles.form}
+                  className={`${styles.form}`}
                   layout="vertical"
                   name="new-path"
                   onFinish={onCreatePath}>

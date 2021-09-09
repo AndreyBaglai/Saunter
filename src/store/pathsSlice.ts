@@ -27,7 +27,7 @@ const pathsSlice = createSlice({
       return [...state, action.payload];
     },
 
-    updateFromLS(state, action) {
+    loadFromLS(state, action) {
       return [...action.payload];
     },
 

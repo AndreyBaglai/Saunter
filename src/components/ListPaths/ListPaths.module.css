@@ -29,15 +29,27 @@
 
 .listItem h4 {
   color: #9aed00;
+  display: flex;
+  align-items: baseline;
 }
 
 .leftArrow {
-  font-size: 28px;
+  font-size: 24px;
   color: #9aed00;
+}
+
+.itemTitle {
+  color: #fff;
+  margin-bottom: 0;
+  font-size: 14px;
 }
 
 .meta {
   align-items: center;
+}
+
+.meta h4 {
+  margin-bottom: 0;
 }
 
 .title {
@@ -50,7 +62,7 @@
 
 .distance {
   color: #fff;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
   margin: 0 10px;
 }

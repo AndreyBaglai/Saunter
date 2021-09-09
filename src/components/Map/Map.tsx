@@ -98,7 +98,7 @@ const Map = ({ id, isEdit, isSetMarkers }: MapPropsType) => {
           });
       }
     });
-  }, [isEdit, isSetMarkers, pathInfo, id]);
+  }, [isEdit, isSetMarkers, pathInfo, id, dispatch]);
 
   return <div id={id} className={styles.mapWrapper}></div>;
 };

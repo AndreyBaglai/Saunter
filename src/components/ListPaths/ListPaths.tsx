@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { List, Typography } from 'antd';
 import { EnvironmentTwoTone, RightOutlined, StarFilled, StarOutlined } from '@ant-design/icons';
 
-import { getPathsFromLS } from 'services/localStorage';
+import { getPathsFromLS, updateFavoritePathByLS } from 'services/localStorage';
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
 
@@ -11,23 +11,15 @@ import styles from './ListPaths.module.css';
 
 type ListPathPropsType = {
   paths: PathModel[];
-  isFiltered: boolean;
 };
 
-const ListPaths = ({ paths, isFiltered }: ListPathPropsType) => {
-  let pathsState = useSelector((state: StoreModel) => state.paths);
+const ListPaths = ({ paths }: ListPathPropsType) => {
+  const statePaths = useSelector((state: StoreModel) => state.paths);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const pathsFromLS = getPathsFromLS();
-    if (pathsFromLS.length > 0) {
-      dispatch({type: 'paths/updateFromLS', payload: pathsFromLS});
-    }
-  }, []);
 
   const onSelectedPath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    const path = pathsState.find((path: PathModel) => path.id === target.id);
+    const path = statePaths.find((path: PathModel) => path.id === target.id);
 
     dispatch({ type: 'paths/select', payload: target.id });
     dispatch({
@@ -35,39 +27,64 @@ const ListPaths = ({ paths, isFiltered }: ListPathPropsType) => {
       payload: path,
     });
   };
+  
+  const onSetFavorite = (e: React.MouseEvent) => {
+    const target = e.currentTarget as HTMLElement;
+    const id =  target.dataset.id as string;
+    
+    updateFavoritePathByLS(id);
+    dispatch({ type: 'paths/setFavorite', payload: id });
+  };
+
+  const onRemoveFavorite = (e: React.MouseEvent) => {
+    const target = e.currentTarget as HTMLElement;
+    const id =  target.dataset.id as string;
+
+    updateFavoritePathByLS(id);
+    dispatch({ type: 'paths/removeFavorite', payload: target.dataset.id });
+  };
 
   return (
     <List
       className={styles.list}
-      dataSource={pathsState}
+      dataSource={statePaths}
       bordered={true}
       locale={{
         emptyText: <Typography.Text className={styles.emptyText}>No more paths</Typography.Text>,
       }}
       renderItem={(path: PathModel) => (
-        <List.Item key={path.id} className={styles.listItem} id={path.id} onClick={onSelectedPath}>
+        <List.Item
+          key={path.id}
+          className={`container px-md-2 px-lg-6 ${styles.listItem}`}
+          id={path.id}
+          onClick={onSelectedPath}>
           <List.Item.Meta
             className={styles.meta}
-            avatar={<EnvironmentTwoTone className={styles.itemMarker} twoToneColor="true" />}
+            avatar={
+              <EnvironmentTwoTone
+                className={`d-none d-md-block ${styles.itemMarker}`}
+                twoToneColor="true"
+              />
+            }
             title={
               <>
                 {path.favorite ? (
-                  <StarFilled style={{ color: 'yellow' }} />
+                  <StarFilled  data-id={path.id} style={{ color: 'yellow' }} onClick={onRemoveFavorite} />
                 ) : (
-                  <StarOutlined style={{ color: 'yellow' }} />
+                  <StarOutlined  data-id={path.id} style={{ color: 'yellow' }} onClick={onSetFavorite} />
                 )}
-                {path.title}
+                <Typography.Text className={styles.itemTitle}>{path.title}</Typography.Text>
               </>
             }
             description={
-              <Typography.Paragraph className={styles.description}>
+              <Typography.Paragraph className={`d-none d-md-block ${styles.description}`}>
                 {path.description.short}
               </Typography.Paragraph>
             }
           />
 
           <Typography.Text className={styles.distance}>{`${path.distance} km`}</Typography.Text>
-          <RightOutlined className={styles.leftArrow} />
+          <RightOutlined className={`d-none d-md-block ${styles.leftArrow}`} />
         </List.Item>
       )}></List>
   );
