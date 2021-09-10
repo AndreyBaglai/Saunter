@@ -1,30 +1,36 @@
+@import 'styles/variables.scss';
+
 .pathView {
   background: transparent;
-  color: #fff;
-  border: 1px solid #9aed00;
+  color: $text-color;
+  border: 1px solid $primary-green;
   border-radius: 10px;
   width: 100%;
-}
 
-.card {
-  background: transparent;
-  color: #fff;
-  border: none;
-  width: 100%;
-}
+  .card {
+    background: transparent;
+    color: $text-color;
+    border: none;
+    width: 100%;
 
-.card h5 {
-  margin-bottom: 0;
-}
+    .fullDescription {
+      word-wrap: break-word;
+    }
 
-.distance {
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-}
+    .distance {
+      color: $text-color;
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-.wrapperBtn {
-  margin: 0 auto;
+    .wrapperBtn {
+      margin: 0 auto;
+    }
+
+    & h5 {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .defaultText {
@@ -35,8 +41,4 @@
   min-height: 50px;
   margin: 20px auto 0;
   text-align: center;
-}
-
-.fullDescription {
-  word-wrap: break-word;
 }

@@ -1,5 +1,7 @@
+@import 'styles/variables.scss';
+
 .text {
-  color: #9aed00;
+  color: $primary-green;
   font-size: 21px;
   text-transform: uppercase;
 }

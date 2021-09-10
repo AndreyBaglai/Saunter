@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 .modalWrapper {
   position: fixed;
   left: 50%;
@@ -7,35 +9,35 @@
 }
 
 .title {
-  color: #9aed00;
+  color: $primary-green;
 }
 
 .modal {
-  background: rgb(87, 87, 87);
+  background: $bg-form;
   padding: 24px;
 }
 
 .modalTitle {
-  background: rgb(87, 87, 87);
+  background: $bg-form;
 }
 
 .form {
   text-align: center;
-}
 
-.formField label {
-  color: #9aed00;
-}
-
-.mapWrapper {
-  position: relative;
-}
-
-.distance {
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 16px;
+  .formField label {
+    color: $primary-green;
+  }
+  
+  .mapWrapper {
+    position: relative;
+  }
+  
+  .distance {
+    color: $text-color;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
 }
 
 .removeBtn {

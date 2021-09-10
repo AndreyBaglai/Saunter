@@ -1,4 +1,6 @@
+@import 'styles/variables.scss';
+
 .header {
   min-height: 74px;
-  color: #fff;
+  color: $text-color;
 }

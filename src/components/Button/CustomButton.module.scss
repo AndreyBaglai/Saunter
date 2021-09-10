@@ -1,11 +1,12 @@
+@import 'styles/variables.scss';
+
 .customBtn {
-  background-color: #9aed00;
+  background-color: $primary-green;
   color: #000;
   font-weight: 400;
-}
 
-.customBtn:hover,
-.customBtn:focus {
-  color: #9aed00;
-  border-color: #9aed00;
+  &:hover, &:focus {
+    color: $primary-green;
+    border-color: $primary-green;
+  }
 }

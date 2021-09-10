@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 .listWrapper {
   margin-bottom: 15px;
   width: 100%;
@@ -5,31 +7,31 @@
 
 .inputSearch {
   margin-bottom: 30px;
-  border-color: #9aed00;
+  border-color: $primary-green;
   background: rgb(61, 60, 60);
-  color: #fff;
+  color: $text-color;
   border-radius: 10px;
 }
 
 .inputSearch input {
-  border-color: #9aed00;
+  border-color: $primary-green;
   background: rgb(61, 60, 60);
-  color: #fff;
+  color: $text-color;
   border-radius: 10px;
 }
 
 .inputSearch:hover,
 .inputSearch:focus {
-  border-color: #9aed00;
+  border-color: $primary-green;
   background: rgb(61, 60, 60);
-  color: #fff;
-  border-color: #9aed00 !important;
-  outline: #9aed00 !important;
+  color: $text-color;
+  border-color: $primary-green !important;
+  outline: $primary-green !important;
 }
 
 .icon {
   background-color: transparent;
-  color: #9aed00;
+  color: $primary-green;
   cursor: pointer;
   font-size: 24px;
   transition: all 0.5s ease;

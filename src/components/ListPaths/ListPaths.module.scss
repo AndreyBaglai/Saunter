@@ -1,13 +1,49 @@
+@import 'styles/variables.scss';
+
 .list {
   border-radius: 10px;
-  border: 1px solid #9aed00;
-}
+  border: 1px solid $primary-green;
 
-.listItem {
-  padding: 18px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.5s ease;
+  .listItem {
+    padding: 18px;
+    color: $text-color;
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    .title {
+      color: $text-color;
+    }
+    
+    .description {
+      color: $text-color;
+    }
+    
+    .distance {
+      color: $text-color;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0 10px;
+    }
+    
+    .itemMarker {
+      font-size: 32px;
+      color: rgb(253, 50, 5);
+    }
+
+    & h4 {
+      color: $primary-green;
+      display: flex;
+      align-items: baseline;
+    }
+
+    &:hover {
+      background: $primary-green;
+
+      & h4, & .leftArrow {
+        color: #000;
+      }
+    }
+  }
 }
 
 .emptyText {
@@ -18,58 +54,23 @@
   text-align: center;
 }
 
-.listItem:hover {
-  background: #9aed00;
-}
-
-.listItem:hover h4,
-.listItem:hover .leftArrow {
-  color: #000;
-}
-
-.listItem h4 {
-  color: #9aed00;
-  display: flex;
-  align-items: baseline;
-}
-
 .leftArrow {
   font-size: 24px;
-  color: #9aed00;
+  color: $primary-green;
 }
 
 .itemTitle {
-  color: #fff;
+  color: $text-color;
   margin-bottom: 0;
   font-size: 14px;
 }
 
 .meta {
   align-items: center;
-}
 
-.meta h4 {
-  margin-bottom: 0;
-}
-
-.title {
-  color: #fff;
-}
-
-.description {
-  color: #fff;
-}
-
-.distance {
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0 10px;
-}
-
-.itemMarker {
-  font-size: 32px;
-  color: rgb(253, 50, 5);
+  & h4 {
+    margin-bottom: 0;
+  }
 }
 
 @media screen and (max-width: 768px) {
