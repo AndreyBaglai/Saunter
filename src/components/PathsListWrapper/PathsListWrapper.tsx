@@ -64,7 +64,7 @@ const PathsListWrapper = () => {
   };
 
   return (
-    <Col className={`col-md-6 col-sm-12 ${styles.listWrapper}`}>
+    <Col className={`col-xl-6 col-lg-6 col-md-6 col-sm-12 ${styles.listWrapper}`}>
       <Row>
         <Col span={24}>
           <Input
