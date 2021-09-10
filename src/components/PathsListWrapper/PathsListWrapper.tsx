@@ -24,7 +24,19 @@ const PathsListWrapper = () => {
       setFilterPaths(pathsFromLS);
       dispatch({ type: 'paths/loadFromLS', payload: pathsFromLS });
     }
-  }, [dispatch]);
+  }, []);
+
+  useEffect(() => {
+    if (fieldValue) {
+      const filterPaths = pathsState.filter(
+        (path: PathModel) =>
+          path.title.toLowerCase().includes(fieldValue.toLowerCase()) ||
+          path.description.short.toLowerCase().includes(fieldValue.toLowerCase()),
+      );
+
+      setFilterPaths(filterPaths);
+    }
+  }, [pathsState]);
 
   const onClearSearchField = () => {
     setFieldValue('');
