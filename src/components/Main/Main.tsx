@@ -9,7 +9,7 @@ import styles from './Main.module.scss';
 const Main = () => {
   return (
     <main className={`row ${styles.main}`}>
-      <Row justify="space-around" className="row">
+      <Row justify="space-around" className="container">
         <PathsListWrapper />
         <PathView />
       </Row>
