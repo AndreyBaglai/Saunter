@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/saunter/static/css/main.23d7af90.chunk.css",
-    "main.js": "/saunter/static/js/main.2fa1acc6.chunk.js",
-    "main.js.map": "/saunter/static/js/main.2fa1acc6.chunk.js.map",
+    "main.css": "/saunter/static/css/main.ef9bb885.chunk.css",
+    "main.js": "/saunter/static/js/main.a3be73e3.chunk.js",
+    "main.js.map": "/saunter/static/js/main.a3be73e3.chunk.js.map",
     "runtime-main.js": "/saunter/static/js/runtime-main.15fa3a29.js",
     "runtime-main.js.map": "/saunter/static/js/runtime-main.15fa3a29.js.map",
     "static/css/2.10aa7b05.chunk.css": "/saunter/static/css/2.10aa7b05.chunk.css",
@@ -10,14 +10,14 @@
     "static/js/2.5a65a727.chunk.js.map": "/saunter/static/js/2.5a65a727.chunk.js.map",
     "index.html": "/saunter/index.html",
     "static/css/2.10aa7b05.chunk.css.map": "/saunter/static/css/2.10aa7b05.chunk.css.map",
-    "static/css/main.23d7af90.chunk.css.map": "/saunter/static/css/main.23d7af90.chunk.css.map",
+    "static/css/main.ef9bb885.chunk.css.map": "/saunter/static/css/main.ef9bb885.chunk.css.map",
     "static/js/2.5a65a727.chunk.js.LICENSE.txt": "/saunter/static/js/2.5a65a727.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.15fa3a29.js",
     "static/css/2.10aa7b05.chunk.css",
     "static/js/2.5a65a727.chunk.js",
-    "static/css/main.23d7af90.chunk.css",
-    "static/js/main.2fa1acc6.chunk.js"
+    "static/css/main.ef9bb885.chunk.css",
+    "static/js/main.a3be73e3.chunk.js"
   ]
 }
