@@ -10,10 +10,10 @@ import { PathModel } from 'model/path-model';
 import styles from './ListPaths.module.scss';
 
 type ListPathPropsType = {
-  paths: PathModel[];
+  filterPaths: PathModel[];
 };
 
-const ListPaths = ({ paths }: ListPathPropsType) => {
+const ListPaths = ({ filterPaths }: ListPathPropsType) => {
   const statePaths = useSelector((state: StoreModel) => state.paths);
   const dispatch = useDispatch();
 
@@ -47,7 +47,7 @@ const ListPaths = ({ paths }: ListPathPropsType) => {
   return (
     <List
       className={styles.list}
-      dataSource={paths}
+      dataSource={filterPaths}
       bordered={true}
       locale={{
         emptyText: <Typography.Text className={styles.emptyText}>No more paths</Typography.Text>,

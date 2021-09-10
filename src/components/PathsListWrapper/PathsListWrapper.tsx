@@ -13,22 +13,22 @@ import { getPathsFromLS } from 'services/localStorage';
 
 const PathsListWrapper = () => {
   const pathsState = useSelector((state: StoreModel) => state.paths);
-  
-  const [paths, setPaths] = useState<PathModel[]>(pathsState);
+
+  const [filterPaths, setFilterPaths] = useState<PathModel[]>(pathsState);
   const [fieldValue, setFieldValue] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
     const pathsFromLS = getPathsFromLS();
     if (pathsFromLS.length > 0) {
-      setPaths(pathsFromLS);
+      setFilterPaths(pathsFromLS);
       dispatch({ type: 'paths/loadFromLS', payload: pathsFromLS });
     }
   }, [dispatch]);
 
   const onClearSearchField = () => {
     setFieldValue('');
-    setPaths(pathsState);
+    setFilterPaths(pathsState);
   };
 
   const onFilterPaths = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,12 +39,14 @@ const PathsListWrapper = () => {
     }
 
     // fields by sort
-    const filterPaths = pathsState.filter((path: PathModel) =>
-      path.title.toLowerCase().includes(value.toLowerCase()),
+    const filterPaths = pathsState.filter(
+      (path: PathModel) =>
+        path.title.toLowerCase().includes(value.toLowerCase()) ||
+        path.description.short.toLowerCase().includes(value.toLowerCase()),
     );
 
     setFieldValue(value);
-    setPaths(filterPaths);
+    setFilterPaths(filterPaths);
   };
 
   return (
@@ -62,7 +64,7 @@ const PathsListWrapper = () => {
         </Col>
       </Row>
 
-      <ListPaths paths={paths} />
+      <ListPaths filterPaths={filterPaths} />
     </Col>
   );
 };

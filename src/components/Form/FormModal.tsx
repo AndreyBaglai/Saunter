@@ -135,8 +135,8 @@ const FormModal = () => {
                         message: 'Please, input title path',
                       },
                       {
-                        max: 15,
-                        message: 'Title must be not more 15 symbols',
+                        max: 12,
+                        message: 'Title must be not more 12 symbols',
                       },
                     ]}>
                     <Input />
