@@ -1,5 +1,5 @@
 .modalWrapper {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -43,4 +43,14 @@
   bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+@media screen and (max-width: 768px) {
+  .modalWrapper {
+    left: 0;
+    top: 0;
+    transform: translate(0, 0);
+    overflow-y: scroll;
+    max-height: 100vh;
+  }
 }
