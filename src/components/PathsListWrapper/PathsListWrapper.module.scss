@@ -3,6 +3,7 @@
 .listWrapper {
   margin-bottom: 15px;
   width: 100%;
+  padding: 0 !important;
 }
 
 .inputSearch {
@@ -11,22 +12,21 @@
   background: rgb(61, 60, 60);
   color: $text-color;
   border-radius: 10px;
-}
 
-.inputSearch input {
-  border-color: $primary-green;
-  background: rgb(61, 60, 60);
-  color: $text-color;
-  border-radius: 10px;
-}
+  &:hover, &:focus {
+    border-color: $primary-green;
+    background: rgb(61, 60, 60);
+    color: $text-color;
+    border-color: $primary-green !important;
+    outline: $primary-green !important;
+  }
 
-.inputSearch:hover,
-.inputSearch:focus {
-  border-color: $primary-green;
-  background: rgb(61, 60, 60);
-  color: $text-color;
-  border-color: $primary-green !important;
-  outline: $primary-green !important;
+  & input {
+    border-color: $primary-green;
+    background: rgb(61, 60, 60);
+    color: $text-color;
+    border-radius: 10px;
+  }
 }
 
 .icon {
@@ -35,8 +35,8 @@
   cursor: pointer;
   font-size: 24px;
   transition: all 0.5s ease;
-}
 
-.icon:hover {
-  color: #7ab50e;
+  &:hover {
+    color: #7ab50e;
+  }
 }
