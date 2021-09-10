@@ -35,6 +35,8 @@ const PathsListWrapper = () => {
       );
 
       setFilterPaths(filterPaths);
+    } else {
+      setFilterPaths(pathsState);
     }
   }, [pathsState]);
 
