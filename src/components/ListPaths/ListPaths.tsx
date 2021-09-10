@@ -14,12 +14,11 @@ type ListPathPropsType = {
 };
 
 const ListPaths = ({ filterPaths }: ListPathPropsType) => {
-  const statePaths = useSelector((state: StoreModel) => state.paths);
   const dispatch = useDispatch();
 
   const onSelectedPath = (e: React.MouseEvent) => {
     const target = e.currentTarget as HTMLElement;
-    const path = statePaths.find((path: PathModel) => path.id === target.id);
+    const path = filterPaths.find((path: PathModel) => path.id === target.id);
 
     dispatch({ type: 'paths/select', payload: target.id });
     dispatch({
