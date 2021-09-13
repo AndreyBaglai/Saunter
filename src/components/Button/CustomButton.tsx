@@ -4,7 +4,7 @@ import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 import styles from './CustomButton.module.scss';
 
-type CustomButtonPropsType = {
+interface IProps {
   text: string;
   size: SizeType;
   htmlType?: any;
@@ -13,14 +13,14 @@ type CustomButtonPropsType = {
   handleFunc: any;
 };
 
-const CustomButton = ({
+const CustomButton: React.FC<IProps> = ({
   text = '',
   size = 'middle',
   shape = 'round',
   icon,
   htmlType = 'button',
   handleFunc = () => {},
-}: CustomButtonPropsType) => {
+}) => {
   return (
     <Button
       onClick={handleFunc}

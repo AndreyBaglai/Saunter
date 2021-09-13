@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { List, Typography } from 'antd';
 import { EnvironmentTwoTone, RightOutlined, StarFilled, StarOutlined } from '@ant-design/icons';
 
 import { updateFavoritePathByLS } from 'services/localStorage';
-import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
 
 import styles from './ListPaths.module.scss';
 
-type ListPathPropsType = {
-  filterPaths: PathModel[];
+interface IProps {
+  filterPaths: PathModel[]
 };
 
-const ListPaths = ({ filterPaths }: ListPathPropsType) => {
+const ListPaths: React.FC<IProps> = ({ filterPaths }) => {
   const dispatch = useDispatch();
 
   const onSelectedPath = (e: React.MouseEvent) => {
