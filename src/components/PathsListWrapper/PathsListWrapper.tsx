@@ -8,8 +8,10 @@ import { CloseCircleFilled } from '@ant-design/icons';
 import { StoreModel } from 'model/store-model';
 import { PathModel } from 'model/path-model';
 
-import styles from './PathsListWrapper.module.scss';
 import { getPathsFromLS } from 'services/localStorage';
+
+import styles from './PathsListWrapper.module.scss';
+
 
 const PathsListWrapper = () => {
   const pathsState = useSelector((state: StoreModel) => state.paths);
