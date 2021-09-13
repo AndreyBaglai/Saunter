@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import classNames from 'classnames'; 
 import { nanoid } from '@reduxjs/toolkit';
 import { CloseOutlined } from '@ant-design/icons';
 import { Col, PageHeader, Row, Typography, Form, Input, message } from 'antd';
@@ -101,8 +102,8 @@ const FormModal = () => {
 
   return isOpen
     ? ReactDOM.createPortal(
-        <Row className={`container ${styles.modalWrapper}`}>
-          <Col className="row col-md-8 offset-md-2 col-10 offset-1">
+        <Row className={classNames('container', styles.modalWrapper)}>
+          <Col className={classNames('row', 'col-md-8', 'offset-md-2', 'col-10 offset-1')}>
             <PageHeader
               className={styles.modalTitle}
               title={<Typography.Text className={styles.title}>Add new path</Typography.Text>}
@@ -118,10 +119,10 @@ const FormModal = () => {
               ]}
             />
 
-            <Row className={`container ${styles.modal}`}>
-              <Col className="col-md-6 col-12">
+            <Row className={classNames('container', styles.modal)}>
+              <Col className={classNames('col-md-6', 'col-12')}>
                 <Form
-                  className={`${styles.form}`}
+                  className={styles.form}
                   layout="vertical"
                   name="new-path"
                   onFinish={onCreatePath}>
@@ -192,7 +193,7 @@ const FormModal = () => {
                 </Form>
               </Col>
 
-              <Col className={`col-md-5 offset-md-1 col-12 ${styles.mapWrapper}`}>
+              <Col className={classNames('col-md-5', 'offset-md-1', 'col-12', styles.mapWrapper)}>
                 <Map id="mapForm" isEdit={true} isSetMarkers={includeMarkers} />
                 <div className={styles.removeBtn}>
                   <CustomButton
@@ -208,7 +209,7 @@ const FormModal = () => {
         </Row>,
         rootFormContainer,
       )
-    : ReactDOM.createPortal('', rootFormContainer);
+    : null;
 };
 
 export default FormModal;

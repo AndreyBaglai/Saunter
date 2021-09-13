@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageHeader } from 'antd';
 import { useDispatch } from 'react-redux';
+import classNames from 'classnames'; 
 
 import Logo from 'components/Logo/Logo';
 import CustomButton from 'components/Button/CustomButton';
@@ -13,7 +14,7 @@ const Header = () => {
 
   return (
     <PageHeader
-      className={`row ${styles.header}`}
+      className={classNames('row', styles.header)}
       title={<Logo />}
       extra={[
         <CustomButton

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Input, Row } from 'antd';
+import classNames from 'classnames'; 
 import { useDispatch, useSelector } from 'react-redux';
 
 import ListPaths from 'components/ListPaths/ListPaths';
@@ -66,7 +67,7 @@ const PathsListWrapper = () => {
   };
 
   return (
-    <Col className={`col-xl-6 col-lg-6 col-md-6 col-sm-12 ${styles.listWrapper}`}>
+    <Col className={classNames('col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-12', styles.listWrapper)}>
       <Row>
         <Col span={24}>
           <Input

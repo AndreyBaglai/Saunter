@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import classNames from 'classnames'; 
 import { List, Typography } from 'antd';
 import { EnvironmentTwoTone, RightOutlined, StarFilled, StarOutlined } from '@ant-design/icons';
 
@@ -53,14 +54,14 @@ const ListPaths: React.FC<IProps> = ({ filterPaths }) => {
       renderItem={(path: PathModel) => (
         <List.Item
           key={path.id}
-          className={`container px-md-2 px-lg-6 ${styles.listItem}`}
+          className={classNames('container', 'px-md-2', 'px-lg-6', styles.listItem)}
           id={path.id}
           onClick={onSelectedPath}>
           <List.Item.Meta
             className={styles.meta}
             avatar={
               <EnvironmentTwoTone
-                className={`d-none d-md-block ${styles.itemMarker}`}
+                className={classNames('d-none', 'd-md-block', styles.itemMarker)}
                 twoToneColor="true"
               />
             }
@@ -83,14 +84,14 @@ const ListPaths: React.FC<IProps> = ({ filterPaths }) => {
               </>
             }
             description={
-              <Typography.Paragraph className={`d-none d-md-block ${styles.description}`}>
+              <Typography.Paragraph className={classNames('d-none', 'd-md-block', styles.description)}>
                 {path.description.short}
               </Typography.Paragraph>
             }
           />
 
           <Typography.Text className={styles.distance}>{`${path.distance} km`}</Typography.Text>
-          <RightOutlined className={`d-none d-md-block ${styles.leftArrow}`} />
+          <RightOutlined className={classNames('d-none', 'd-md-block', styles.leftArrow)} />
         </List.Item>
       )}></List>
   );

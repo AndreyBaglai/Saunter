@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import classNames from 'classnames'; 
 
 import styles from './CustomButton.module.scss';
 
@@ -24,7 +25,7 @@ const CustomButton: React.FC<IProps> = ({
   return (
     <Button
       onClick={handleFunc}
-      className={styles.customBtn}
+      className={classNames(styles.customBtn)}
       size={size}
       type="ghost"
       shape={shape}
