@@ -22,10 +22,9 @@ const PathsListWrapper = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const pathsFromLS = getPathsFromLS();
-    if (pathsFromLS.length > 0) {
-      setFilterPaths(pathsFromLS);
-      dispatch({ type: 'paths/loadFromLS', payload: pathsFromLS });
+    if (getPathsFromLS().length > 0) {
+      setFilterPaths(getPathsFromLS());
+      dispatch({ type: 'paths/loadFromLS', payload: getPathsFromLS() });
     }
   }, []);
 
@@ -48,8 +47,8 @@ const PathsListWrapper = () => {
     setFilterPaths(pathsState);
   };
 
-  const onFilterPaths = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+  const onFilterPaths = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = target;
 
     if (value === '') {
       onClearSearchField();

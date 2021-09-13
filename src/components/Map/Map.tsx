@@ -6,26 +6,26 @@ import { StoreModel } from 'model/store-model';
 
 import styles from './Map.module.scss';
 
-type MapPropsType = {
+interface IProps {
   id: string;
   isEdit: boolean;
   isSetMarkers: boolean;
   path?: any;
 };
 
-const Map = ({ id, isEdit, isSetMarkers }: MapPropsType) => {
+let map: google.maps.Map<HTMLElement>;
+let poly: any;
+
+const loader = new Loader({
+  apiKey: `${process.env.REACT_APP_API_KEY}`,
+  version: 'weekly',
+});
+
+const Map: React.FC<IProps> = ({ id, isEdit, isSetMarkers }) => {
   const pathInfo = useSelector((state: StoreModel) => state.currentPath);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let map: google.maps.Map<HTMLElement>;
-    let poly: any;
-
-    const loader = new Loader({
-      apiKey: `${process.env.REACT_APP_API_KEY}`,
-      version: 'weekly',
-    });
-
     loader.load().then(() => {
       const mapContainer = document.getElementById(id) as HTMLElement;
 
